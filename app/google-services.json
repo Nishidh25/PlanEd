@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "24561635660",
+    "project_id": "planed-ad74a",
+    "storage_bucket": "planed-ad74a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24561635660:android:4a354e73685ea377a5ffe9",
+        "android_client_info": {
+          "package_name": "com.proj.planed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24561635660-08eva40suasj47j74d8m5kla4kd8m7v2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNQ3_XALXI89S9c_oj0zCicmgnnCRdxV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24561635660-08eva40suasj47j74d8m5kla4kd8m7v2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
