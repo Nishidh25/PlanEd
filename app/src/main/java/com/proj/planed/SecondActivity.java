@@ -41,7 +41,7 @@ public class SecondActivity extends AppCompatActivity {
 
         logout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), OnboardingActivity.class));
         });
 
     }
@@ -54,7 +54,7 @@ public class SecondActivity extends AppCompatActivity {
         //opening the login activity
         if (mAuth.getCurrentUser() == null) {
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, OnboardingActivity.class));
         }
     }
 }

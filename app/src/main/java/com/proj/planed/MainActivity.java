@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //first we intialized the FirebaseAuth object
+        //first we initialized the FirebaseAuth object
         mAuth = FirebaseAuth.getInstance();
 
         //Then we need a GoogleSignInOptions object
