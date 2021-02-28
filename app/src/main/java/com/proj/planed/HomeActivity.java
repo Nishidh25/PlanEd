@@ -1,9 +1,7 @@
 package com.proj.planed;
 
 import android.content.Intent;
-
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SecondActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView textName, textEmail;
@@ -34,7 +32,7 @@ public class SecondActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
 
-
+        assert user != null;
         textName.setText(user.getDisplayName());
         textEmail.setText(user.getEmail());
         Button logout = findViewById(R.id.button);
@@ -42,6 +40,7 @@ public class SecondActivity extends AppCompatActivity {
         logout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), OnboardingActivity.class));
+            HomeActivity.this.finish();
         });
 
     }
@@ -55,6 +54,7 @@ public class SecondActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, OnboardingActivity.class));
+            HomeActivity.this.finish();
         }
     }
 }

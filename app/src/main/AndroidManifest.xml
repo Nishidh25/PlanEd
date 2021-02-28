@@ -10,9 +10,9 @@
         android:supportsRtl="true"
 
         android:theme="@style/Theme.PlanEd">
-        <activity android:name=".MainActivity">
+        <activity android:name=".FirebaseActivity">
         </activity>
-        <activity android:name=".SecondActivity"/>
+        <activity android:name=".HomeActivity"/>
         <activity android:name=".OnboardingActivity"
             android:theme="@style/Theme.onboard">
             <intent-filter>

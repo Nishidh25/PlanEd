@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 
@@ -16,34 +18,39 @@ public class SliderAdapter extends PagerAdapter {
     LayoutInflater layoutInflater;
 
     public SliderAdapter(Context context){
-        this.context=context;}
+        this.context=context;
+    }
     public int[] slide_images={
             R.drawable.icon_list,
             R.drawable.icons_registration,
             R.drawable.icon_stethoscope
 
     };
-    public String[] slide_headings={ "Welcome to PlanEd","Registration","Heading 3"};
-    public String[] slide_descriptions={ "Take control of your health and medications","Have you used this app before?","Description 3"};
 
+    // Change Headings and description here
+    public String[] slide_headings={ "Welcome to PlanEd","Heading 2","Registration"};
+    public String[] slide_descriptions={ "Take control of your health and medications","Description 2","Have you used this app before?"};
+
+    // Page count based on headings length
     @Override
     public int getCount() {
         return slide_headings.length;
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view== (RelativeLayout) object;
-
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view== object;
 
     }
-    public Object instantiateItem(ViewGroup container, int position){
 
-        layoutInflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+    @NonNull
+    public Object instantiateItem(@NonNull ViewGroup container, int position){
+
+        layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=layoutInflater.inflate(R.layout.slide_layout,container,false);
-        ImageView slideImageView=(ImageView)view.findViewById(R.id.imageView2);
-        TextView slideHeading=(TextView)view.findViewById(R.id.textView3);
-        TextView slidedescription=(TextView)view.findViewById(R.id.description);
+        ImageView slideImageView= view.findViewById(R.id.imageView2);
+        TextView slideHeading= view.findViewById(R.id.textView3);
+        TextView slidedescription= view.findViewById(R.id.description);
 
         slideImageView.setImageResource(slide_images[position]);
         slideHeading.setText(slide_headings[position]);
@@ -54,8 +61,8 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container,int position,Object object){
-        container.removeView((RelativeLayout)object);
+    public void destroyItem(ViewGroup container, int position, @NonNull Object object){
+        container.removeView((ConstraintLayout)object);
     }
 
 }
