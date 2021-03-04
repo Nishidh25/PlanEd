@@ -99,8 +99,15 @@ public class FirebaseActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
 
 
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+
+
+
+
+                        //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), RegisterActvity.class);
                         startActivity(intent);
+                        FirebaseActivity.this.finish();
+
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
@@ -114,9 +121,10 @@ public class FirebaseActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
 
-
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), RegisterActvity.class);
                             startActivity(intent);
+                            FirebaseActivity.this.finish();
+                            //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
