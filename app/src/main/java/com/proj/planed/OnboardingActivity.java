@@ -87,7 +87,8 @@ public class OnboardingActivity extends AppCompatActivity {
             } else {
                 mNextBtn.setEnabled(true);
                 mBackBtn.setEnabled(true);
-
+                mNextBtn2.setEnabled(false);
+                mNextBtn2.setVisibility(View.INVISIBLE);
                 mBackBtn.setVisibility(View.VISIBLE);
                 mNextBtn.setText("Next");
                 mBackBtn.setText("Back");
