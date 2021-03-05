@@ -9,9 +9,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -37,6 +39,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        startActivity(new Intent(this, NavigationActivity.class));
+        HomeActivity.this.finish();
+
+
         String TAG = "Sample TAG";
         mAuth = FirebaseAuth.getInstance();
         String uid = "ABCD";
@@ -51,13 +58,13 @@ public class HomeActivity extends AppCompatActivity {
         assert user != null;
         //textName.setText(user.getDisplayName());
         //textEmail.setText(user.getEmail());
-        //Button logout = findViewById(R.id.button);
+        FloatingActionButton logout = findViewById(R.id.floatingActionButton);
 
-        //logout.setOnClickListener(v -> {
-        //    FirebaseAuth.getInstance().signOut();
-        //    startActivity(new Intent(getApplicationContext(), OnboardingActivity.class));
-       //     HomeActivity.this.finish();
-       // });
+        logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), OnboardingActivity.class));
+            HomeActivity.this.finish();
+        });
 
 
         //Button firestore = findViewById(R.id.Firestorebutton);
