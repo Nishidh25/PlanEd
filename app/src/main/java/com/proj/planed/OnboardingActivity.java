@@ -1,22 +1,34 @@
 package com.proj.planed;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class OnboardingActivity extends AppCompatActivity {
 
 
     FirebaseAuth mAuth;
+
+    private static final String PREFS_NAME = "prefs";
+    private static final String PREF_DARK_THEME = "dark_theme";
 
     private ViewPager mSlideViewPager;
     private LinearLayout mDotLayout;
@@ -26,6 +38,8 @@ public class OnboardingActivity extends AppCompatActivity {
     private Button mNextBtn2;
     private Button mBackBtn;
     private int mCurrentPage;
+
+
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
 
 
@@ -106,7 +120,29 @@ public class OnboardingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
         setContentView(R.layout.activity_intro);
+        ConstraintLayout intro_layout = findViewById(R.id.intro_constraint);
+        if(useDarkTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            intro_layout.setBackgroundResource(R.drawable.bg);
+            setContentView(intro_layout);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            intro_layout.setBackgroundResource(R.drawable.bg_white);
+            setContentView(intro_layout);
+        }
+
+
+
+
+        SwitchMaterial theme_switch = findViewById(R.id.switch1);
+        theme_switch.setTextOn("Dark");
+        theme_switch.setTextOff("Light");
+
+        theme_switch.setChecked(useDarkTheme);
+        theme_switch.setOnCheckedChangeListener((view, isChecked) -> toggleTheme(isChecked));
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -119,26 +155,13 @@ public class OnboardingActivity extends AppCompatActivity {
         mBackBtn = findViewById(R.id.previous);
         addDotsIndicator(0);
         mSlideViewPager.addOnPageChangeListener(viewListener);
-        mNextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSlideViewPager.setCurrentItem(mCurrentPage + 1);
-            }
-        });
 
-        mNextBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), FirebaseActivity.class));
-            }
-        });
 
-        mBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSlideViewPager.setCurrentItem(mCurrentPage - 1);
-            }
-        });
+        mNextBtn.setOnClickListener(view -> mSlideViewPager.setCurrentItem(mCurrentPage + 1));
+
+        mNextBtn2.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), FirebaseActivity.class)));
+
+        mBackBtn.setOnClickListener(view -> mSlideViewPager.setCurrentItem(mCurrentPage - 1));
     }
 
     public void addDotsIndicator(int position) {
@@ -170,5 +193,17 @@ public class OnboardingActivity extends AppCompatActivity {
         }
     }
 
+    public void toggleTheme(boolean darkTheme) {
+        SharedPreferences.Editor editor = getApplication().getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        Log.d("Theme", String.valueOf(darkTheme));
 
+        editor.putBoolean(PREF_DARK_THEME, darkTheme);
+        editor.apply();
+
+        //Intent intent = getIntent();
+
+        OnboardingActivity.this.finish();
+        startActivity(getIntent());
+
+    }
 }

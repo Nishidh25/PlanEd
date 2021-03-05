@@ -54,28 +54,25 @@ public class HomeFragment extends Fragment {
         DocumentReference docRef = db.collection("users").document(uid);
         //String Name = docRef.get().getResult().getString("First name");
         String  TAG = "";
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+        docRef.get().addOnCompleteListener((OnCompleteListener<DocumentSnapshot>) task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
 
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        Log.d(TAG, "db firstName getString() is: " + document.getString("firstName"));
-                        Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
+                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    Log.d(TAG, "db firstName getString() is: " + document.getString("firstName"));
+                    Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
 
-                        String mFirstName = (String) document.getString("First name");
-                        String mLastName = (String) document.getString("Last name");
-                        Log.d(TAG, "String mFirstName is: " + mFirstName);
-                        Log.d(TAG, "String mLastName is: " + mLastName);
-                        textName.setText(mFirstName + " " +mLastName);
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
+                    String mFirstName = (String) document.getString("First name");
+                    String mLastName = (String) document.getString("Last name");
+                    Log.d(TAG, "String mFirstName is: " + mFirstName);
+                    Log.d(TAG, "String mLastName is: " + mLastName);
+                    textName.setText(mFirstName + " " +mLastName);
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Log.d(TAG, "No such document");
                 }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
             }
         });
 
