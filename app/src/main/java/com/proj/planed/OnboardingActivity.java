@@ -1,5 +1,6 @@
 package com.proj.planed;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -117,6 +118,7 @@ public class OnboardingActivity extends AppCompatActivity {
         }
     };
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,11 +128,13 @@ public class OnboardingActivity extends AppCompatActivity {
         ConstraintLayout intro_layout = findViewById(R.id.intro_constraint);
         if(useDarkTheme) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            intro_layout.setBackgroundResource(R.drawable.bg);
+            //intro_layout.setBackgroundResource(R.drawable.bg);
+            intro_layout.setBackgroundColor(android.R.color.black);
             setContentView(intro_layout);
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            intro_layout.setBackgroundResource(R.drawable.bg_white);
+            //intro_layout.setBackgroundResource(R.drawable.bg_white);
+            intro_layout.setBackgroundColor(android.R.color.white);
             setContentView(intro_layout);
         }
 

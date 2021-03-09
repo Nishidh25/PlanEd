@@ -117,7 +117,7 @@ public class FirebaseActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
 
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                             startActivity(intent);
                             FirebaseActivity.this.finish();
 
@@ -141,7 +141,7 @@ public class FirebaseActivity extends AppCompatActivity {
         //and take the user to profile activity
         if (mAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(this, HomeActivity.class));
+            startActivity(new Intent(this, NavigationActivity.class));
         }
     }
 
@@ -183,7 +183,7 @@ public class FirebaseActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
                         Toast.makeText(FirebaseActivity.this, "User Signed In", Toast.LENGTH_SHORT).show();
                     } else {
                         // If sign in fails, display a message to the user.

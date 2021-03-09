@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,11 +31,11 @@ import com.proj.planed.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -42,9 +43,9 @@ public class HomeFragment extends Fragment {
 
         TextView textName = root.findViewById(R.id.textViewName);
 
-
         FirebaseUser user = mAuth.getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
         assert user != null;
         textName.setText(user.getDisplayName());
@@ -54,7 +55,27 @@ public class HomeFragment extends Fragment {
         DocumentReference docRef = db.collection("users").document(uid);
         //String Name = docRef.get().getResult().getString("First name");
         String  TAG = "";
-        docRef.get().addOnCompleteListener((OnCompleteListener<DocumentSnapshot>) task -> {
+    /*      docRef.get().addOnSuccessListener( task ->{
+            DocumentSnapshot document =  docRef.get().getResult();
+            if(task.exists()){
+              Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+              Log.d(TAG, "db firstName getString() is: " + document.getString("firstName"));
+              Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
+
+              String mFirstName = (String) document.getString("First name");
+              String mLastName = (String) document.getString("Last name");
+              Log.d(TAG, "String mFirstName is: " + mFirstName);
+              Log.d(TAG, "String mLastName is: " + mLastName);
+              textName.setText(mFirstName + " " +mLastName);
+              }
+          else{
+              Log.d(TAG, "No such document");
+          }
+
+        }); */
+
+        docRef.get().addOnCompleteListener(task -> {
+
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -76,8 +97,25 @@ public class HomeFragment extends Fragment {
             }
         });
 
+   /*     docRef.get().addOnSuccessListener(task -> {
 
+                        DocumentSnapshot document = task.getDocumentReference();
+                        if (document.exists()) {
 
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            Log.d(TAG, "db firstName getString() is: " + document.getString("firstName"));
+                            Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
+
+                            String mFirstName = (String) document.getString("First name");
+                            String mLastName = (String) document.getString("Last name");
+                            Log.d(TAG, "String mFirstName is: " + mFirstName);
+                            Log.d(TAG, "String mLastName is: " + mLastName);
+                            textName.setText(mFirstName + " " +mLastName);
+                        } else {
+                            Log.d(TAG, "No such document");
+
+                    }
+                } ); */
 
 
         logout.setOnClickListener(v -> {
@@ -86,5 +124,19 @@ public class HomeFragment extends Fragment {
            // FragmentActivity.finish();
         });
         return root;
+    }
+
+
+   // @Override
+    protected void onStartView() {
+        super.onStart();
+
+        //if the user is not logged in
+        //opening the login activity
+        if (mAuth.getCurrentUser() == null) {
+            //getActivity().finish();
+            startActivity(new Intent(getContext(), OnboardingActivity.class));
+            getActivity().finish();
+        }
     }
 }

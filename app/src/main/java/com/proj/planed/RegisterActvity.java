@@ -101,7 +101,7 @@ public class RegisterActvity extends AppCompatActivity{
             users.put("Age", Integer.parseInt(age.getText().toString()));
 
             db.collection("users").document(uid).set(users);
-            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
             startActivity(intent);
             RegisterActvity.this.finish();
         });
