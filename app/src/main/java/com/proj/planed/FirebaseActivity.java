@@ -100,7 +100,7 @@ public class FirebaseActivity extends AppCompatActivity {
 
 
                         //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        Intent intent = new Intent(getApplicationContext(), RegisterActvity.class);
+                        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                         startActivity(intent);
                         FirebaseActivity.this.finish();
 

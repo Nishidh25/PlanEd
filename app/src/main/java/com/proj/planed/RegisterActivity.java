@@ -2,15 +2,12 @@ package com.proj.planed;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActvity extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity{
 
     String[] gender_list = { "Male", "Female"};
     String gender = "";
@@ -103,7 +100,7 @@ public class RegisterActvity extends AppCompatActivity{
             db.collection("users").document(uid).set(users);
             Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
             startActivity(intent);
-            RegisterActvity.this.finish();
+            RegisterActivity.this.finish();
         });
 
 
