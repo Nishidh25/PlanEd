@@ -85,10 +85,10 @@ public class HomeFragment extends Fragment {
                     Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
 
                     String mFirstName = (String) document.getString("First name");
-                    String mLastName = (String) document.getString("Last name");
+                    //String mLastName = (String) document.getString("Last name");
                     Log.d(TAG, "String mFirstName is: " + mFirstName);
-                    Log.d(TAG, "String mLastName is: " + mLastName);
-                    textName.setText(mFirstName + " " +mLastName);
+                    //Log.d(TAG, "String mLastName is: " + mLastName);
+                    textName.setText("Welcome "+mFirstName);
                 } else {
                     Log.d(TAG, "No such document");
                 }

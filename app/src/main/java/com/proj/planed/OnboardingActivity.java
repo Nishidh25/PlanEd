@@ -192,7 +192,7 @@ public class OnboardingActivity extends AppCompatActivity {
         //we will close this activity
         //and take the user to profile activity
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, HomeActivity.class));
+            startActivity(new Intent(this, NavigationActivity.class));
             OnboardingActivity.this.finish();
         }
     }
