@@ -103,7 +103,6 @@ public class RegisterActivity extends AppCompatActivity{
             RegisterActivity.this.finish();
         });
 
-
     }
 
 

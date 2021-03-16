@@ -31,8 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="117dp"
                 android:contentDescription="@string/content_description_media"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/icons_registration" />
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/planner2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,8 +89,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="117dp"
                 android:contentDescription="@string/content_description_media"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/icons_registration" />
+
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/pills_2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,20 +125,22 @@
 
     </androidx.cardview.widget.CardView>
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="38dp"
-        android:layout_height="53dp"
-        android:clickable="true"
-        android:foregroundGravity="center"
-        app:backgroundTint="#FF0000"
+        android:layout_width="55dp"
+        android:layout_height="58dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="#f27059"
+        android:src="@drawable/abc_vector_test"
+        app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959"
-        app:srcCompat="@drawable/abc_vector_test" />
+        app:layout_constraintVertical_bias="0.98" />
 
     <TextView
         android:id="@+id/textViewName"
@@ -154,7 +157,7 @@
         app:layout_constraintVertical_bias="0.037" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card2"
+        android:id="@+id/card5"
         android:layout_width="165dp"
         android:layout_height="235dp"
         android:layout_margin="8dp"
@@ -176,8 +179,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="117dp"
                 android:contentDescription="@string/content_description_media"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/icons_registration" />
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/help" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -201,6 +204,64 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="Need Help? \n Find answers here!"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card5"
+        android:layout_width="165dp"
+        android:layout_height="235dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Media -->
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="117dp"
+                android:contentDescription="@string/content_description_media"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/plus" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="106dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="More"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Click here for more options"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
 

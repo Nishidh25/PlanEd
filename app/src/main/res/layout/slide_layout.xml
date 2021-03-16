@@ -17,8 +17,8 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="329dp"
-        android:layout_height="wrap_content"
+        android:layout_width="383dp"
+        android:layout_height="58dp"
         android:gravity="center"
         android:text="@string/heading"
         android:textAlignment="center"
@@ -36,7 +36,7 @@
         android:layout_height="74dp"
         android:text="@string/description"
         android:textAlignment="center"
-        android:textSize="15sp"
+        android:textSize="20sp"
 
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

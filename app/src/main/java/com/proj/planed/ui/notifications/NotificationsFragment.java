@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.proj.planed.R;
 
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 public class NotificationsFragment extends Fragment {
@@ -55,8 +56,18 @@ public class NotificationsFragment extends Fragment {
         changetime.setOnClickListener(view -> {
             textview1.setText(getCurrentTime());
             String time = getCurrentTime();
+
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, timepicker.getHour());
+            calendar.set(Calendar.MINUTE, timepicker.getMinute());
+
+
             int min = timepicker.getHour()* 60 + timepicker.getMinute();
             long usertime = TimeUnit.MINUTES.toMillis(min);
+
+            //calendar.set(Calendar.HOUR_OF_DAY, TimePicker.getCurrentHour());
+            //calendar.set(Calendar.MINUTE, TimePicker.getCurrentMinute());
 
             Intent intent = new Intent(getContext(), AlertBroadcast.class);
             PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(), 0,intent,0);
@@ -64,7 +75,7 @@ public class NotificationsFragment extends Fragment {
             AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
             Log.d("TAG", "onCreateView: 1" +SystemClock.elapsedRealtime() + " " + usertime);
 
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime() + SystemClock.elapsedRealtime() -usertime, alarmIntent);
+            alarmManager.set(AlarmManager.RTC,calendar.getTimeInMillis(), alarmIntent);
             Log.d("TAG", "onCreateView: 2");
         });
         return root;
