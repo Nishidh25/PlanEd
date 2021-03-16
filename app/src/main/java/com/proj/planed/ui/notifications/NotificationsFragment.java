@@ -68,7 +68,7 @@ public class NotificationsFragment extends Fragment {
 
             //calendar.set(Calendar.HOUR_OF_DAY, TimePicker.getCurrentHour());
             //calendar.set(Calendar.MINUTE, TimePicker.getCurrentMinute());
-
+ /*
             Intent intent = new Intent(getContext(), AlertBroadcast.class);
             PendingIntent alarmIntent = PendingIntent.getBroadcast(getContext(), 0,intent,0);
 
@@ -77,6 +77,8 @@ public class NotificationsFragment extends Fragment {
 
             alarmManager.set(AlarmManager.RTC,calendar.getTimeInMillis(), alarmIntent);
             Log.d("TAG", "onCreateView: 2");
+             /*
+  */
         });
         return root;
     }
@@ -90,7 +92,7 @@ public class NotificationsFragment extends Fragment {
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+  /*        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "PlanEd Alert Channel" ;              //getString(R.string.channel_name);
             String description = "Channel for PlanEd Alert";          //getString(R.string.channel_description);
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -100,6 +102,6 @@ public class NotificationsFragment extends Fragment {
             // or other notification behaviors after this
             NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
-        }
+        }*/
     }
 }

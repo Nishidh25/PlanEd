@@ -13,7 +13,7 @@ public class AlertBroadcast extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "PlanEdChannel")
+    /*    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "PlanEdChannel")
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle("Alert")
                 .setContentText("Test Reminder")
@@ -21,6 +21,6 @@ public class AlertBroadcast extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
-        notificationManager.notify(245,builder.build());
+        notificationManager.notify(245,builder.build()); */
     }
 }
