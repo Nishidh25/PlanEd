@@ -206,7 +206,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
         //Intent intent = getIntent();
 
-        OnboardingActivity.this.finish();
+        OnboardingActivity.this.finishAffinity();
         startActivity(getIntent());
 
     }

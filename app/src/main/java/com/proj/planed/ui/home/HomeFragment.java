@@ -9,15 +9,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.proj.planed.NavigationActivity;
 import com.proj.planed.OnboardingActivity;
 import com.proj.planed.R;
 
@@ -113,9 +121,47 @@ public class HomeFragment extends Fragment {
 
         logout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
+            getActivity().finish();
             startActivity(new Intent(root.getContext(), OnboardingActivity.class));
            // FragmentActivity.finish();
         });
+
+        CardView card_pill_reminder = root.findViewById(R.id.card_pill_reminder);
+        CardView card_planner = root.findViewById(R.id.card_planner);
+        CardView card_faq = root.findViewById(R.id.card_faq);
+        CardView card_more = root.findViewById(R.id.card_more);
+
+
+        card_pill_reminder.setOnClickListener( v-> {
+
+            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_dashboard);
+            //    navView.getSelectedItemId();
+        });
+
+        card_planner.setOnClickListener( v-> {
+
+            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_notifications);
+
+        });
+
+        card_faq.setOnClickListener( v-> {
+
+            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            navView.setSelectedItemId(R.id.navigation_profile);
+
+        });
+
+        card_more.setOnClickListener( v-> {
+
+        });
+
+
+
+
+
+
         return root;
     }
 

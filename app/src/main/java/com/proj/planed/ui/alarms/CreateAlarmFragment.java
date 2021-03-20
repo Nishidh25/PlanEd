@@ -70,7 +70,7 @@ public class CreateAlarmFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_createalarm, container, false);
 
         ButterKnife.bind(this, view);
-
+        timePicker.setIs24HourView(true);
         recurring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
