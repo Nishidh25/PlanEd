@@ -31,14 +31,18 @@ public class Alarm {
     @NonNull
     private int alarmId;
 
-    private int hour, minute;
+    private int hour, minute, frequency;
     private boolean started, recurring;
     private boolean monday, tuesday, wednesday, thursday, friday, saturday, sunday;
-    private String title;
+    private String title, instruction, condition, med_type;
+
+
 
     private long created;
 
-    public Alarm(int alarmId, int hour, int minute, String title, long created, boolean started, boolean recurring, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday) {
+    public Alarm(int alarmId, int hour, int minute, String title, long created, boolean started, boolean recurring, boolean monday, boolean tuesday,
+                 boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday,
+                 String instruction, String condition, String med_type, int frequency) {
         this.alarmId = alarmId;
         this.hour = hour;
         this.minute = minute;
@@ -55,6 +59,10 @@ public class Alarm {
         this.sunday = sunday;
 
         this.title = title;
+        this.instruction = instruction;
+        this.condition = condition;
+        this.med_type = med_type;
+        this.frequency = frequency;
 
         this.created = created;
     }
@@ -216,6 +224,19 @@ public class Alarm {
     public String getTitle() {
         return title;
     }
+    public String getInstruction() {
+        return instruction;
+    }
+    public String getCondition() {
+        return condition;
+    }
+    public String getMed_type() {
+        return med_type;
+    }
+    public Integer getFrequency() {
+        return frequency;
+    }
+
 
     public long getCreated() {
         return created;

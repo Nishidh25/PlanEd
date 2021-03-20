@@ -1,120 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
+        android:layout_width="412dp"
+        android:layout_height="52dp"
+        android:text="Schedule Alarm"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <EditText
+        android:id="@+id/time_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:ems="2"
+        android:inputType="time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189" />
 
-        <TextView
-            android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
-            android:layout_width="404dp"
-            android:layout_height="53dp"
-            android:layout_marginEnd="7dp"
-            android:text="Schedule Alarm"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/select_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="Select Time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.246" />
 
-        <LinearLayout
-            android:id="@+id/fragment_createalarm_timePickerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading">
+    <EditText
+        android:id="@+id/fragment_createalarm_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pill name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
 
-            <TimePicker
-                android:id="@+id/fragment_createalarm_timePicker"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6"
-                android:timePickerMode="clock" />
-        </LinearLayout>
+    <EditText
+        android:id="@+id/pill_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="What is this medicine for ..."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
 
-        <EditText
-            android:id="@+id/fragment_createalarm_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Alarm Title"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_timePickerLayout" />
+
+    <Spinner
+        android:id="@+id/spinner_pill_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_createalarm_scheduleAlarm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragment_createalarm_scheduleAlarmHeading"
+        app:layout_constraintVertical_bias="0.637" />
+
+    <EditText
+        android:id="@+id/pill_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Any special instructions for taking this medicine?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.398" />
+
+    <EditText
+        android:id="@+id/pill_frequency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="How many days do you need to take this medicine"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717" />
+
+    <CheckBox
+        android:id="@+id/fragment_createalarm_recurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="Recurring Alarm"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_createalarm_scheduleAlarm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.475" />
+
+    <LinearLayout
+        android:id="@+id/fragment_createalarm_recurring_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
 
         <CheckBox
-            android:id="@+id/fragment_createalarm_recurring"
-            android:layout_width="match_parent"
+            android:id="@+id/fragment_createalarm_checkMon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Recurring Alarm"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title" />
+            android:text="Mon" />
 
-        <LinearLayout
-            android:id="@+id/fragment_createalarm_recurring_options"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkTue"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
+            android:text="Tue" />
 
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkMon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mon" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkTue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tue" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkWed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wed" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkThu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thu" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkFri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fri" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkSat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sat" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkSun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sun" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/fragment_createalarm_scheduleAlarm"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkWed"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Schedule Alarm"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="133dp" />
+            android:text="Wed" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkThu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thu" />
 
-</LinearLayout>
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkFri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fri" />
+
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkSat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sat" />
+
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkSun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sun" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_createalarm_scheduleAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Schedule Alarm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

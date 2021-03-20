@@ -65,7 +65,11 @@ public class RingActivity extends AppCompatActivity {
                         false,
                         false,
                         false,
-                        false
+                        false,
+                        "String instruction",
+                        "condition",
+                        "med_type",
+                        2
                 );
 
                 alarm.schedule(getApplicationContext());

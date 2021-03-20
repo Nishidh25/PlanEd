@@ -1,15 +1,20 @@
 package com.proj.planed.ui.alarms;
 
 import android.app.Application;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
@@ -23,14 +28,27 @@ import androidx.room.RoomDatabase;
 
 import com.proj.planed.R;
 
+import java.util.Calendar;
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CreateAlarmFragment extends Fragment {
-    @BindView(R.id.fragment_createalarm_timePicker)
+    EditText time_selected;
     TimePicker timePicker;
+    @BindView(R.id.pill_instruction)
+    EditText pillInstruction;
+    @BindView(R.id.pill_frequency)
+    EditText pillFrequency;
+    @BindView(R.id.pill_description)
+    EditText pillDescription;
+    @BindView(R.id.spinner_pill_type)
+    Spinner spinner_pillType;
+    String pillType;
+
+
+
     @BindView(R.id.fragment_createalarm_title)
     EditText title;
     @BindView(R.id.fragment_createalarm_scheduleAlarm)
@@ -55,7 +73,7 @@ public class CreateAlarmFragment extends Fragment {
     LinearLayout recurringOptions;
 
     private CreateAlarmViewModel createAlarmViewModel;
-
+    String[] type_pill = { "Type 1", "Type 2" };
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +86,29 @@ public class CreateAlarmFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createalarm, container, false);
+        final Calendar c = Calendar.getInstance();
+        time_selected = view.findViewById(R.id.time_text);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        timePicker = view;
+                        timePicker.setIs24HourView(true);
+                        time_selected.setText(hourOfDay + ":" + minute);
+                    }
+                }, c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE), false);
+
+
+        Button selectTime = view.findViewById(R.id.select_time);
+        selectTime.setOnClickListener(v -> {
+            timePickerDialog.show();
+        });
+
 
         ButterKnife.bind(this, view);
-        timePicker.setIs24HourView(true);
+
         recurring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -82,6 +120,29 @@ public class CreateAlarmFragment extends Fragment {
             }
         });
 
+
+
+
+
+
+        ArrayAdapter ad = new ArrayAdapter(  getContext(),  android.R.layout.simple_spinner_item,   type_pill);
+
+        ad.setDropDownViewResource(android.R.layout .simple_spinner_dropdown_item);
+
+        spinner_pillType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                pillType = type_pill[position];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+        spinner_pillType.setAdapter(ad);
+
+
         scheduleAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +151,6 @@ public class CreateAlarmFragment extends Fragment {
 
             }
         });
-
 
 
         return view;
@@ -116,7 +176,11 @@ public class CreateAlarmFragment extends Fragment {
                 thu.isChecked(),
                 fri.isChecked(),
                 sat.isChecked(),
-                sun.isChecked()
+                sun.isChecked(),
+                pillInstruction.getText().toString(),
+                pillDescription.getText().toString(),
+                pillType,
+                Integer.parseInt(pillFrequency.getText().toString())
         );
 
         createAlarmViewModel.insert(alarm);
