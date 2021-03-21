@@ -3,11 +3,12 @@
     <style name="Theme.PlanEd" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
 
-        <item name="colorPrimary">#376996</item>
-        <item name="colorPrimaryVariant">#1F487E</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">#395C6B</item>
+        <item name="colorPrimaryVariant">#4F7E92</item>
+        <item name="colorOnPrimary">#6D9CB0</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#1D3461</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -33,15 +34,9 @@
 
 
     <style name="Theme.onboard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-        <item name="colorPrimary">#376996</item>
-        <item name="colorPrimaryVariant">#1F487E</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">#1D3461</item>
-        <item name="colorOnSecondary">@color/black</item>
-
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorOnPrimary">@color/black</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="actionBarTheme">@null</item>
