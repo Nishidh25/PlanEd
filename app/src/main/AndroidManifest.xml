@@ -22,8 +22,16 @@
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
+            android:windowSoftInputMode="stateVisible|adjustPan"
             android:screenOrientation="portrait" />
-        <activity android:name=".FirebaseActivity" />
+        <activity android:name=".FirebaseActivity"
+            android:theme="@style/Theme.onboard">
+        </activity>
+
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/Theme.onboard">
+        </activity>
+
 
         <activity
             android:name=".OnboardingActivity"
@@ -34,7 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
 
 
   <!--      <receiver

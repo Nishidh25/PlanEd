@@ -112,6 +112,7 @@ public class CreateAlarmFragment extends Fragment {
         recurring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
                     recurringOptions.setVisibility(View.VISIBLE);
                 } else {
@@ -119,10 +120,6 @@ public class CreateAlarmFragment extends Fragment {
                 }
             }
         });
-
-
-
-
 
 
         ArrayAdapter ad = new ArrayAdapter(  getContext(),  android.R.layout.simple_spinner_item,   type_pill);

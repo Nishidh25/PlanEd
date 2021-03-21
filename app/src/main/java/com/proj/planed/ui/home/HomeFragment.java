@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment {
         card_pill_reminder.setOnClickListener( v-> {
 
             BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
-            navView.setSelectedItemId(R.id.navigation_dashboard);
+            navView.setSelectedItemId(R.id.navigation_alarm);
             //    navView.getSelectedItemId();
         });
 

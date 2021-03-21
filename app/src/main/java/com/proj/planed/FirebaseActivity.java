@@ -1,11 +1,13 @@
 package com.proj.planed;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,18 +35,26 @@ public class FirebaseActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     //And also a Firebase Auth object
     FirebaseAuth mAuth;
+    private static final String PREFS_NAME = "prefs";
+    private static final String PREF_DARK_THEME = "dark_theme";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
 
         if (getIntent().getStringExtra("Type").equals("Register")){
+
 
             setTitle("Registration");
             setContentView(R.layout.activity_signup);
             //getActionBar().setTitle();
             Button regBtn = findViewById(R.id.button_ereg);
+
+
+
+
             regBtn.setOnClickListener(v -> registerNewUser("Register"));
         }else {
 
@@ -54,6 +64,11 @@ public class FirebaseActivity extends AppCompatActivity {
             Button lgnBtn = findViewById(R.id.button_elogin);
             lgnBtn.setOnClickListener(v -> registerNewUser(""));
 
+        }
+
+        TextView title = findViewById(R.id.textView);
+        if(useDarkTheme) {
+            title.setTextColor(getResources().getColor(R.color.black));
         }
 
 

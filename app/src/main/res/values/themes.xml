@@ -3,12 +3,13 @@
     <style name="Theme.PlanEd" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
 
-        <item name="colorPrimary">#5EA253</item>
-        <item name="colorPrimaryVariant">#78A451</item>
+        <item name="colorPrimary">#376996</item>
+        <item name="colorPrimaryVariant">#1F487E</item>
+
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#8CB569</item>
-        <item name="colorSecondaryVariant">#274323</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -37,12 +38,13 @@
 
     <style name="Theme.onboard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="colorPrimary">#5EA253</item>
-        <item name="colorPrimaryVariant">#78A451</item>
+        <item name="colorPrimary">#376996</item>
+        <item name="colorPrimaryVariant">#1F487E</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#8CB569</item>
-        <item name="colorSecondaryVariant">#274323</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+
         <item name="colorOnSecondary">@color/black</item>
 
         <item name="android:windowTranslucentStatus">true</item>
@@ -57,6 +59,7 @@
         <item name="buttonStyle">@style/ShapeAppearance.App.SmallComponent</item>
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
         <item name="fontFamily">@font/montserrat</item>
+
 
     </style>
 
