@@ -120,14 +120,9 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         // invisible
         isAllFabsVisible = false;
 
-        // Set the Extended floating action button to
-        // shrinked state initially
         mAddFab.shrink();
 
-        // We will make all the FABs and action name texts
-        // visible only when Parent FAB button is clicked So
-        // we have to handle the Parent FAB button first, by
-        // using setOnClickListener you can see below
+
         mAddFab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

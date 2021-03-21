@@ -13,12 +13,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="383dp"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/heading"
         android:textAlignment="center"
@@ -28,15 +28,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintVertical_bias="0.294" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="284dp"
-        android:layout_height="74dp"
+        android:layout_width="355dp"
+        android:layout_height="wrap_content"
         android:text="@string/description"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
 
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

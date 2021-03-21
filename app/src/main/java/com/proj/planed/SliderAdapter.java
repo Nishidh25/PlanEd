@@ -28,8 +28,11 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     // Change Headings and description here
-    public String[] slide_headings={ "Welcome to PlanEd","Click next to register","Registration"};
-    public String[] slide_descriptions={ "Take control of your health and medications","","Have you used this app before?"};
+    public String[] slide_headings={ "Welcome to PlanEd","Choose your preferred colour","Let’s get started!"};
+    public String[] slide_descriptions={ "No need to remember medicine schedules anymore.\n\n" +
+            "This app makes it easier for you to set pill reminders, alarms, schedule activities and more!",
+            "Please choose a theme color for the application according to your comfort.\n\n You can change these settings later.",
+            "Have you used this application before?"};
 
     // Page count based on headings length
     @Override

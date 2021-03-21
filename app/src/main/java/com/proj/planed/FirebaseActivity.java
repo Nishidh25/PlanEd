@@ -16,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -74,20 +76,23 @@ public class FirebaseActivity extends AppCompatActivity {
 
     // Firebase Email auth
     private void registerNewUser(String type) {
-        EditText emailTV = findViewById(R.id.Email);
-        EditText passwordTV = findViewById(R.id.Password);
+        TextInputLayout emailTV = findViewById(R.id.Email);
+        TextInputLayout passwordTV = findViewById(R.id.Password);
 
 
         String email, password;
-        email = emailTV.getText().toString();
-        password = passwordTV.getText().toString();
+        email = emailTV.getEditText().getText().toString();
+        password = passwordTV.getEditText().getText().toString();
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
-            return;
+            emailTV.getEditText().setError("Please enter email...");
+
+          //  Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+            passwordTV.getEditText().setError("Please enter password...");
+          //  Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
             return;
         }
 
