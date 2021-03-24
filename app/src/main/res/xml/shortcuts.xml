@@ -1,0 +1,19 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="compose"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_account_circle_24"
+        android:shortcutShortLabel="@string/account"
+        android:shortcutLongLabel="@string/account"
+        android:shortcutDisabledMessage="@string/account">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.proj.planed"
+            android:targetClass="com.proj.planed.NavigationActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <categories android:name="com.proj.planed.ui.profile.ProfileFragment" />
+    </shortcut>
+    <!-- Specify more shortcuts here. -->
+</shortcuts>
