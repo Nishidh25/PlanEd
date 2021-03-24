@@ -3,6 +3,7 @@ package com.proj.planed.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +23,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,14 +36,12 @@ import com.proj.planed.R;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         FloatingActionButton fab =  root.findViewById(R.id.floatingActionButton);
 
@@ -150,12 +152,14 @@ public class HomeFragment extends Fragment {
 
         card_faq.setOnClickListener( v-> {
 
-            BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation_view);
-            navView.setSelectedItemId(R.id.navigation_profile);
+
 
         });
 
         card_more.setOnClickListener( v-> {
+
+            DrawerLayout layout = getActivity().findViewById(R.id.drawer_layout);
+            layout.openDrawer(GravityCompat.START);
 
         });
 

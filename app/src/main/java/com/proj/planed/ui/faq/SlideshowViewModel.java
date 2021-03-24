@@ -1,4 +1,4 @@
-package com.proj.planed.ui.slideshow;
+package com.proj.planed.ui.faq;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
