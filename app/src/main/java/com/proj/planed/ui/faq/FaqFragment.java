@@ -11,17 +11,17 @@ import androidx.fragment.app.Fragment;
 
 import com.proj.planed.R;
 
-public class SlideshowFragment extends Fragment {
+public class FaqFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        View root = inflater.inflate(R.layout.fragment_faq, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
 
-        textView.setText("This is slideshow fragment");
+        textView.setText("This is faq fragment");
 
         return root;
     }

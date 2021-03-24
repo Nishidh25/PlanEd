@@ -3,7 +3,6 @@ package com.proj.planed.ui.planner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +11,6 @@ import com.proj.planed.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 
 public class PlannerRecyclerViewAdapter extends RecyclerView.Adapter<PlannerViewHolder> {

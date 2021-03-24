@@ -1,31 +1,37 @@
 package com.proj.planed;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.proj.planed.ui.settings.SettingsActivity;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.proj.planed.ui.faq.FaqActivity;
+import com.proj.planed.ui.settings.SettingsActivity;
 
 public class NavigationActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private AppBarConfiguration mAppBarConfiguration;
-    private AppBarConfiguration mAppBarConfiguration2;
+    private static final String PREFS_NAME = "prefs";
+    private static final String PREF_DARK_THEME = "dark_theme";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +66,8 @@ public class NavigationActivity extends AppCompatActivity {
         Menu top = menu.addSubMenu("More");
         top.add("FAQ").setCheckable(true).setIcon(R.drawable.faq).setOnMenuItemClickListener(item -> {
 
-            Intent intent = new Intent(this, RegisterActivity.class);
+            Intent intent = new Intent(this, FaqActivity.class);
             startActivity(intent);
-
 
 
             //loadFragment(new SlideshowFragment());
@@ -100,6 +105,15 @@ public class NavigationActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
+        if(useDarkTheme){
+            int positionOfMenuItem = 0;
+            MenuItem item = menu.getItem(positionOfMenuItem);
+            SpannableString s = new SpannableString("Settings");
+            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+            item.setTitle(s);
+        }
 
         return true;
     }
@@ -120,15 +134,5 @@ public class NavigationActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-    public void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setReorderingAllowed(true);
-
-        transaction.replace(R.id.nav_host_fragment, fragment);
-        transaction.commit();
-    }
-
-
 
 }

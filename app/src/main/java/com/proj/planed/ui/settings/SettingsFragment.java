@@ -36,11 +36,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                     String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
 
+
+
+
         SwitchPreferenceCompat themeSwitch =  findPreference("theme");
         themeSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
             Boolean isdarkOn = (Boolean) newValue;
             toggleTheme(isdarkOn);
-
             return true;
         });
     }
@@ -51,14 +53,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         editor.putBoolean(PREF_DARK_THEME, darkTheme);
         editor.apply();
 
-        restart(getContext());
 
         Intent intent = new Intent(getContext(), OnboardingActivity.class);
-        intent.putExtra("from_setting","yes");
+        //intent.putExtra("from_setting","yes");
         startActivity(intent);
         getActivity().finishAffinity();
-    }
-    public static void restart(Context context){
-
     }
 }

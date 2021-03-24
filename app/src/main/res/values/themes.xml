@@ -61,7 +61,6 @@
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
         <item name="fontFamily">@font/montserrat</item>
 
-
     </style>
 
 
@@ -77,7 +76,6 @@
 
 
     </style>
-
 
 
     <style name="Theme.PlanEd.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.proj.planed.R;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class PlannerViewHolder extends RecyclerView.ViewHolder {
     private TextView alarmTime;

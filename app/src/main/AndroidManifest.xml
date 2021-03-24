@@ -19,7 +19,13 @@
         android:theme="@style/Theme.PlanEd"
         android:usesCleartextTraffic="true"
         tools:ignore="ExtraText">
-
+        <activity android:name=".ui.faq.FaqActivity"
+            android:label="Faq"
+            android:parentActivityName=".NavigationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NavigationActivity" />
+        </activity>
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
@@ -45,17 +51,14 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-
-
-        <activity android:name=".ui.settings.SettingsActivity"
+        <activity
+            android:name=".ui.settings.SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".NavigationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NavigationActivity"/>
+                android:value=".NavigationActivity" />
         </activity>
-
-
         <!--
       <receiver
                   android:process=":remote"

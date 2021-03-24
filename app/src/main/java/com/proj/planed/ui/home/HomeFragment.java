@@ -33,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.proj.planed.NavigationActivity;
 import com.proj.planed.OnboardingActivity;
 import com.proj.planed.R;
+import com.proj.planed.ui.faq.FaqActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -59,24 +60,6 @@ public class HomeFragment extends Fragment {
         DocumentReference docRef = db.collection("users").document(uid);
         //String Name = docRef.get().getResult().getString("First name");
         String  TAG = "";
-    /*      docRef.get().addOnSuccessListener( task ->{
-            DocumentSnapshot document =  docRef.get().getResult();
-            if(task.exists()){
-              Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-              Log.d(TAG, "db firstName getString() is: " + document.getString("firstName"));
-              Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
-
-              String mFirstName = (String) document.getString("First name");
-              String mLastName = (String) document.getString("Last name");
-              Log.d(TAG, "String mFirstName is: " + mFirstName);
-              Log.d(TAG, "String mLastName is: " + mLastName);
-              textName.setText(mFirstName + " " +mLastName);
-              }
-          else{
-              Log.d(TAG, "No such document");
-          }
-
-        }); */
 
         docRef.get().addOnCompleteListener(task -> {
 
@@ -152,7 +135,8 @@ public class HomeFragment extends Fragment {
 
         card_faq.setOnClickListener( v-> {
 
-
+            Intent intent = new Intent(getContext(), FaqActivity.class);
+            startActivity(intent);
 
         });
 
