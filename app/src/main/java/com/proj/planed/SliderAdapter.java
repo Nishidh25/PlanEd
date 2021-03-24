@@ -22,9 +22,8 @@ public class SliderAdapter extends PagerAdapter {
     }
     public int[] slide_images={
             R.drawable.icon_list,
-            R.drawable.icons_registration,
-            R.drawable.icon_stethoscope
-
+            R.drawable.theme_decider,
+            R.drawable.register
     };
 
     // Change Headings and description here

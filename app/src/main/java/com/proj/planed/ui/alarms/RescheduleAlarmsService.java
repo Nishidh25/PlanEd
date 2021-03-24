@@ -7,8 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleService;
 import androidx.lifecycle.Observer;
 
-import com.proj.planed.ui.alarms.AlarmRepository;
-
 import java.util.List;
 
 public class RescheduleAlarmsService extends LifecycleService {

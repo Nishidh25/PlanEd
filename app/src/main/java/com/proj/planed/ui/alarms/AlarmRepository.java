@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.proj.planed.Database;
+
 import java.util.List;
 
 public class AlarmRepository {
@@ -12,19 +14,19 @@ public class AlarmRepository {
     private LiveData<List<Alarm>> alarmsLiveData;
 
     public AlarmRepository(Application application) {
-        AlarmDatabase db = AlarmDatabase.getDatabase(application);
+        Database db = Database.getDatabase(application);
         alarmDao = db.alarmDao();
         alarmsLiveData = alarmDao.getAlarms();
     }
 
     public void insert(Alarm alarm) {
-        AlarmDatabase.databaseWriteExecutor.execute(() -> {
+        Database.databaseWriteExecutor.execute(() -> {
             alarmDao.insert(alarm);
         });
     }
 
     public void update(Alarm alarm) {
-        AlarmDatabase.databaseWriteExecutor.execute(() -> {
+        Database.databaseWriteExecutor.execute(() -> {
             alarmDao.update(alarm);
         });
     }

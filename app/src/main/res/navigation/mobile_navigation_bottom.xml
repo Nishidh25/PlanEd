@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_bottom"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.proj.planed.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_alarm"
+        android:name="com.proj.planed.ui.alarms.AlarmsListFragment"
+        android:label="Pill Reminders"
+        tools:layout="@layout/fragment_listalarms">
+
+
+        <action
+            android:id="@+id/action_alarmsListFragment_to_createAlarmFragment"
+            app:destination="@id/createAlarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.proj.planed.ui.planner.PlannerListFragment"
+        android:label="Activity Planner"
+        tools:layout="@layout/fragment_listplans">
+
+        <action
+            android:id="@+id/action_plannerListFragment_to_createPlannerFragment"
+            app:destination="@id/createPlannerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.proj.planed.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/activity_profile" />
+
+
+
+    <fragment
+        android:id="@+id/createAlarmFragment"
+        android:name="com.proj.planed.ui.alarms.CreateAlarmFragment"
+        android:label="CreateAlarmFragment" >
+        <action
+            android:id="@+id/action_createAlarmFragment_to_alarmsListFragment"
+            app:destination="@id/navigation_alarm"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/createPlannerFragment"
+        android:name="com.proj.planed.ui.planner.CreatePlansFragment"
+        tools:layout="@layout/fragment_createplan"
+        android:label="CreatePlannerFragment" >
+        <action
+            android:id="@+id/action_createPlannerFragment_to_plannerListFragment"
+            app:destination="@id/navigation_notifications"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+
+</navigation>

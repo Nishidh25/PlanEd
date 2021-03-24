@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        FloatingActionButton logout =  root.findViewById(R.id.floatingActionButton);
+        FloatingActionButton fab =  root.findViewById(R.id.floatingActionButton);
 
         TextView textName = root.findViewById(R.id.textViewName);
 
@@ -119,13 +120,14 @@ public class HomeFragment extends Fragment {
                 } ); */
 
 
-        logout.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            getActivity().finish();
-            startActivity(new Intent(root.getContext(), OnboardingActivity.class));
-           // FragmentActivity.finish();
-        });
 
+       fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         CardView card_pill_reminder = root.findViewById(R.id.card_pill_reminder);
         CardView card_planner = root.findViewById(R.id.card_planner);
         CardView card_faq = root.findViewById(R.id.card_faq);
@@ -134,21 +136,21 @@ public class HomeFragment extends Fragment {
 
         card_pill_reminder.setOnClickListener( v-> {
 
-            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation_view);
             navView.setSelectedItemId(R.id.navigation_alarm);
             //    navView.getSelectedItemId();
         });
 
         card_planner.setOnClickListener( v-> {
 
-            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation_view);
             navView.setSelectedItemId(R.id.navigation_notifications);
 
         });
 
         card_faq.setOnClickListener( v-> {
 
-            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            BottomNavigationView navView = getActivity().findViewById(R.id.bottom_navigation_view);
             navView.setSelectedItemId(R.id.navigation_profile);
 
         });
@@ -165,7 +167,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-   // @Override
+    // @Override
     protected void onStartView() {
         super.onStart();
 

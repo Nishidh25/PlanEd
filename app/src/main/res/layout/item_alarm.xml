@@ -8,6 +8,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         app:cardCornerRadius="6dp"
         app:cardElevation="6dp"
         android:layout_margin="8dp">
@@ -20,8 +22,8 @@
 
             <TextView
                 android:id="@+id/item_alarm_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="174dp"
+                android:layout_height="61dp"
                 android:text="00:00"
                 android:textSize="36sp"
                 app:layout_constraintBottom_toBottomOf="parent"

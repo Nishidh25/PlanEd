@@ -1,4 +1,4 @@
-package com.proj.planed.ui.notifications;
+package com.proj.planed.ui.planner;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -8,7 +8,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.os.Vibrator;
@@ -17,8 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.proj.planed.R;
-
-import java.io.IOException;
 
 import static com.proj.planed.ui.alarms.AlarmBroadcastReceiver.TITLE;
 import static com.proj.planed.ui.alarms.App.CHANNEL_ID;

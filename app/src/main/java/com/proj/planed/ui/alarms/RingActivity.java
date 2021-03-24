@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.proj.planed.R;
-import com.proj.planed.ui.alarms.Alarm;
 
 import java.util.Calendar;
 import java.util.Random;

@@ -1,13 +1,8 @@
-package com.proj.planed.ui.notifications;
+package com.proj.planed.ui.planner;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import com.proj.planed.R;
 
 public class AlertBroadcast extends BroadcastReceiver {
 

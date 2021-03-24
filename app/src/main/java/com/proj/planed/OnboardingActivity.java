@@ -1,17 +1,13 @@
 package com.proj.planed;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,7 +35,7 @@ public class OnboardingActivity extends AppCompatActivity {
     private Button mNextBtn2;
     private Button mBackBtn;
     private int mCurrentPage;
-
+    SwitchMaterial theme_switch;
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
 
@@ -58,6 +54,8 @@ public class OnboardingActivity extends AppCompatActivity {
                 mNextBtn.setEnabled(true);
                 mBackBtn.setEnabled(false);
                 mNextBtn2.setEnabled(false);
+                theme_switch.setEnabled(false);
+                theme_switch.setVisibility(View.INVISIBLE);
                 mBackBtn.setVisibility(View.INVISIBLE);
                 mNextBtn2.setVisibility(View.INVISIBLE);
                 mNextBtn.setText("Get Started");
@@ -70,7 +68,10 @@ public class OnboardingActivity extends AppCompatActivity {
                 mBackBtn.setEnabled(true);
                 mNextBtn2.setVisibility(View.VISIBLE);
                 mNextBtn2.setEnabled(true);
+                theme_switch.setEnabled(false);
 
+
+                theme_switch.setVisibility(View.INVISIBLE);
                 mBackBtn.setVisibility(View.VISIBLE);
                 mNextBtn.setText("No");
                 mNextBtn2.setText("Yes");
@@ -103,6 +104,8 @@ public class OnboardingActivity extends AppCompatActivity {
                 mNextBtn.setEnabled(true);
                 mBackBtn.setEnabled(true);
                 mNextBtn2.setEnabled(false);
+                theme_switch.setEnabled(true);
+                theme_switch.setVisibility(View.VISIBLE);
                 mNextBtn2.setVisibility(View.INVISIBLE);
                 mBackBtn.setVisibility(View.VISIBLE);
                 mNextBtn.setText("Next");
@@ -114,7 +117,7 @@ public class OnboardingActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPageScrollStateChanged(int sitate) {
+        public void onPageScrollStateChanged(int state) {
         }
     };
 
@@ -131,22 +134,31 @@ public class OnboardingActivity extends AppCompatActivity {
             //intro_layout.setBackgroundResource(R.drawable.bg);
             intro_layout.setBackgroundColor(android.R.color.black);
             setContentView(intro_layout);
+
+
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             //intro_layout.setBackgroundResource(R.drawable.bg_white);
             intro_layout.setBackgroundColor(android.R.color.white);
             setContentView(intro_layout);
+
         }
 
 
 
+        theme_switch = findViewById(R.id.switch1);
 
-        SwitchMaterial theme_switch = findViewById(R.id.switch1);
-        theme_switch.setTextOn("Dark");
-        theme_switch.setTextOff("Light");
+        if(useDarkTheme){
+            theme_switch.setText("Dark");
+        }else{
+            theme_switch.setText("Light");
+        }
 
         theme_switch.setChecked(useDarkTheme);
-        theme_switch.setOnCheckedChangeListener((view, isChecked) -> toggleTheme(isChecked));
+
+
+
+       theme_switch.setOnCheckedChangeListener((view, isChecked) -> toggleTheme(isChecked));
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -200,7 +212,6 @@ public class OnboardingActivity extends AppCompatActivity {
     public void toggleTheme(boolean darkTheme) {
         SharedPreferences.Editor editor = getApplication().getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
         Log.d("Theme", String.valueOf(darkTheme));
-
         editor.putBoolean(PREF_DARK_THEME, darkTheme);
         editor.apply();
 

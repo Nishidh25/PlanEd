@@ -1,22 +1,23 @@
 package com.proj.planed.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.proj.planed.OnboardingActivity;
 import com.proj.planed.R;
 
 public class ProfileFragment extends Fragment {
@@ -72,6 +73,15 @@ public class ProfileFragment extends Fragment {
             } else {
                 Log.d(TAG, "get failed with ", task.getException());
             }
+        });
+
+
+        FloatingActionButton logout =  root.findViewById(R.id.floatingActionButton);
+        logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            getActivity().finish();
+            startActivity(new Intent(root.getContext(), OnboardingActivity.class));
+            // FragmentActivity.finish();
         });
 
         return root;

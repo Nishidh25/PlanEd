@@ -1,7 +1,8 @@
 package com.proj.planed.ui.alarms;
 
-import android.app.Application;
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
@@ -22,10 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.room.Dao;
-import androidx.room.Database;
-import androidx.room.RoomDatabase;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.proj.planed.R;
 
 import java.util.Calendar;
@@ -35,14 +32,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CreateAlarmFragment extends Fragment {
-    EditText time_selected;
+    TextInputLayout time_selected;
     TimePicker timePicker;
     @BindView(R.id.pill_instruction)
-    EditText pillInstruction;
+    TextInputLayout pillInstruction;
     @BindView(R.id.pill_frequency)
-    EditText pillFrequency;
+    TextInputLayout pillFrequency;
     @BindView(R.id.pill_description)
-    EditText pillDescription;
+    TextInputLayout pillDescription;
     @BindView(R.id.spinner_pill_type)
     Spinner spinner_pillType;
     String pillType;
@@ -50,7 +47,7 @@ public class CreateAlarmFragment extends Fragment {
 
 
     @BindView(R.id.fragment_createalarm_title)
-    EditText title;
+    TextInputLayout title;
     @BindView(R.id.fragment_createalarm_scheduleAlarm)
     Button scheduleAlarm;
     @BindView(R.id.fragment_createalarm_recurring)
@@ -73,7 +70,7 @@ public class CreateAlarmFragment extends Fragment {
     LinearLayout recurringOptions;
 
     private CreateAlarmViewModel createAlarmViewModel;
-    String[] type_pill = { "Type 1", "Type 2" };
+    String[] type_pill = { "Tablet", "Pills" };
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,8 +83,11 @@ public class CreateAlarmFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createalarm, container, false);
+
+
         final Calendar c = Calendar.getInstance();
         time_selected = view.findViewById(R.id.time_text);
+        time_selected.setEnabled(false);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                 new TimePickerDialog.OnTimeSetListener() {
 
@@ -96,7 +96,7 @@ public class CreateAlarmFragment extends Fragment {
                                           int minute) {
                         timePicker = view;
                         timePicker.setIs24HourView(true);
-                        time_selected.setText(hourOfDay + ":" + minute);
+                        time_selected.getEditText().setText(hourOfDay + ":" + minute);
                     }
                 }, c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE), false);
 
@@ -137,6 +137,7 @@ public class CreateAlarmFragment extends Fragment {
                 // Another interface callback
             }
         });
+        spinner_pillType.setPrompt("Select Type");
         spinner_pillType.setAdapter(ad);
 
 
@@ -163,7 +164,7 @@ public class CreateAlarmFragment extends Fragment {
                 TimePickerUtil.getTimePickerHour(timePicker),
                 TimePickerUtil.getTimePickerMinute(timePicker),
 
-                title.getText().toString(),
+                title.getEditText().getText().toString(),
                 System.currentTimeMillis(),
                 true,
                 recurring.isChecked(),
@@ -174,14 +175,32 @@ public class CreateAlarmFragment extends Fragment {
                 fri.isChecked(),
                 sat.isChecked(),
                 sun.isChecked(),
-                pillInstruction.getText().toString(),
-                pillDescription.getText().toString(),
+                pillInstruction.getEditText().getText().toString(),
+                pillDescription.getEditText().getText().toString(),
                 pillType,
-                Integer.parseInt(pillFrequency.getText().toString())
+                Integer.parseInt(pillFrequency.getEditText().getText().toString())
         );
 
         createAlarmViewModel.insert(alarm);
 
         alarm.schedule(getContext());
+
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Alarm Created")
+                .setMessage("Your Alarm has been created!")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setIcon(R.drawable.ic_alarm_static)
+                .show();
+
     }
 }

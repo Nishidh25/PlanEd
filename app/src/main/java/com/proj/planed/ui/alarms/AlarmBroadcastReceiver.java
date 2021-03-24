@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.widget.Toast;
 
-import com.proj.planed.ui.alarms.AlarmService;
-import com.proj.planed.ui.alarms.RescheduleAlarmsService;
-
 import java.util.Calendar;
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver {

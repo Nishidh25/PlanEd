@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.proj.planed.R;
 
@@ -30,7 +28,7 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     private RecyclerView alarmsRecyclerView;
     private FloatingActionButton addAlarm;
     FloatingActionButton deleteAll;
-    Boolean isAllFabsVisible;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,54 +104,16 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
 
 
         TextView addAlarmActionText = view.findViewById(R.id.add_alarms_action_text);
-        TextView addPersonActionText  = view.findViewById(R.id.delete_alarms_action_text);
-        ExtendedFloatingActionButton mAddFab = view.findViewById(R.id.add_fab);
+        TextView addPersonActionText  = view.findViewById(R.id.delete_alarms_action_text);;
 
 
-        addAlarm.setVisibility(View.GONE);
-        deleteAll.setVisibility(View.GONE);
-        addAlarmActionText.setVisibility(View.GONE);
-        addPersonActionText.setVisibility(View.GONE);
-
-        // make the boolean variable as false, as all the
-        // action name texts and all the sub FABs are
-        // invisible
-        isAllFabsVisible = false;
-
-        mAddFab.shrink();
+        addAlarm.show();
+        deleteAll.show();
+        addAlarmActionText.setVisibility(View.VISIBLE);
+        addPersonActionText.setVisibility(View.VISIBLE);
 
 
-        mAddFab.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (!isAllFabsVisible) {
 
-                            addAlarm.show();
-                            deleteAll.show();
-                            addAlarmActionText.setVisibility(View.VISIBLE);
-                            addPersonActionText.setVisibility(View.VISIBLE);
-
-
-                            mAddFab.extend();
-
-
-                            isAllFabsVisible = true;
-                        } else {
-
-                            addAlarm.hide();
-                            deleteAll.hide();
-                            addAlarmActionText.setVisibility(View.GONE);
-                            addPersonActionText.setVisibility(View.GONE);
-
-                            // Set the FAB to shrink after user
-                            // closes all the sub FABs
-                            mAddFab.shrink();
-
-                            isAllFabsVisible = false;
-                        }
-                    }
-                });
 
 
 

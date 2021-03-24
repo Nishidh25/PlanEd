@@ -3,7 +3,6 @@ package com.proj.planed.ui.alarms;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.proj.planed.R;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class AlarmViewHolder extends RecyclerView.ViewHolder {
     private TextView alarmTime;
@@ -34,10 +38,11 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
         this.listener = listener;
     }
 
-    public void bind(Alarm alarm) {
+    public void bind(Alarm alarm) throws Exception {
         String alarmText = String.format("%02d:%02d", alarm.getHour(), alarm.getMinute());
-
-        alarmTime.setText(alarmText);
+        String result = LocalTime.parse(alarmText, DateTimeFormatter.ofPattern("HH:mm")).format(DateTimeFormatter.ofPattern("hh:mm a"));
+        alarmTime.setText(result);
+        //alarmTime.setText(conv24to12h(alarmText));
         alarmStarted.setChecked(alarm.isStarted());
 
         if (alarm.isRecurring()) {
@@ -61,4 +66,5 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
 }

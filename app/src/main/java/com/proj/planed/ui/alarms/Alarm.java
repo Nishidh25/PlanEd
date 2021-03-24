@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.proj.planed.ui.alarms.DayUtil;
-
 import java.util.Calendar;
 
 import static com.proj.planed.ui.alarms.AlarmBroadcastReceiver.FRIDAY;

@@ -31,7 +31,11 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int position) {
         Alarm alarm = alarms.get(position);
-        holder.bind(alarm);
+        try {
+            holder.bind(alarm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
