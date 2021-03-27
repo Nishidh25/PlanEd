@@ -31,7 +31,12 @@
             android:label="@string/title_activity_navigation"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.PlanEd.NoActionBar"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
+            android:windowSoftInputMode="stateVisible|adjustPan">
+
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+        </activity>
         <activity
             android:name=".FirebaseActivity"
             android:theme="@style/Theme.onboard" />

@@ -131,7 +131,7 @@ public class FirebaseActivity extends AppCompatActivity {
 
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Registration failed! Please try again later" + task.getException(), Toast.LENGTH_LONG).show();
 
                     }
                 });

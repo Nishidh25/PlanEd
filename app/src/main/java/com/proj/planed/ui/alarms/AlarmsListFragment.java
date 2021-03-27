@@ -1,7 +1,9 @@
 package com.proj.planed.ui.alarms;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,7 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.proj.planed.NavigationActivity;
 import com.proj.planed.R;
+import com.proj.planed.ui.planner.Planner;
 
 import java.util.List;
 
@@ -28,7 +34,7 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     private RecyclerView alarmsRecyclerView;
     private FloatingActionButton addAlarm;
     FloatingActionButton deleteAll;
-
+    SearchView searchView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +101,22 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
 
 
 
+
+        searchView = ((NavigationActivity)getActivity()).searchView;
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(getActivity().getApplicationContext(), newText,Toast.LENGTH_SHORT).show();
+                //searchAlarm(newText);
+                //AlarmRecyclerViewAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +143,9 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         return view;
     }
 
+
+
+
     @Override
     public void onToggle(Alarm alarm) {
         if (alarm.isStarted()) {
@@ -131,4 +156,62 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
             alarmsListViewModel.update(alarm);
         }
     }
+
+    @Override
+    public void onResume() {
+        Log.e("DEBUG", "onResume of AlarmsFragment");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(getActivity().getApplicationContext(), newText,Toast.LENGTH_SHORT).show();
+                searchAlarm(newText);
+                //AlarmRecyclerViewAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.e("DEBUG", "OnPause of AlarmsFragment");
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        super.onPause();
+    }
+
+    public void searchAlarm(String alarmName){
+
+        alarmsListViewModel.getAlarmSearch(alarmName).observe(getViewLifecycleOwner(), new Observer<List<Alarm>>() {
+
+            @Override
+            public void onChanged(List<Alarm> Alarms) {
+                if (Alarms != null) {
+                    alarmRecyclerViewAdapter.setAlarms(Alarms);
+                }
+            }
+        });
+        alarmRecyclerViewAdapter.notifyDataSetChanged();
+
+
+
+    }
+
+
 }

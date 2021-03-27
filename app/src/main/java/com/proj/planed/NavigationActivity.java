@@ -1,9 +1,12 @@
 package com.proj.planed;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
@@ -11,6 +14,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,7 +34,7 @@ public class NavigationActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private static final String PREFS_NAME = "prefs";
     private static final String PREF_DARK_THEME = "dark_theme";
-
+    public SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,13 +111,21 @@ public class NavigationActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
+
         if(useDarkTheme){
-            int positionOfMenuItem = 0;
+            int positionOfMenuItem = 1;
             MenuItem item = menu.getItem(positionOfMenuItem);
             SpannableString s = new SpannableString("Settings");
             s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
             item.setTitle(s);
+
         }
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
 
         return true;
     }

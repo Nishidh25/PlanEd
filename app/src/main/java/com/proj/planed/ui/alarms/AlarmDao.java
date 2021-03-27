@@ -25,4 +25,9 @@ public interface AlarmDao {
 
     @Delete
     void delete(Alarm alarm);
+
+
+    @Query("SELECT * FROM alarm_table WHERE title LIKE :name || '%' ORDER BY created ASC")
+    LiveData<List<Alarm>> getAlarmSearch(String name);
+
 }

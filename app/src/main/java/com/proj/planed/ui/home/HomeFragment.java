@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -84,25 +86,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-   /*     docRef.get().addOnSuccessListener(task -> {
 
-                        DocumentSnapshot document = task.getDocumentReference();
-                        if (document.exists()) {
 
-                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                            Log.d(TAG, "db firstName getString() is: " + document.getString("firstName"));
-                            Log.d(TAG, "db lastName getString() is: " + document.getString("lastName"));
-
-                            String mFirstName = (String) document.getString("First name");
-                            String mLastName = (String) document.getString("Last name");
-                            Log.d(TAG, "String mFirstName is: " + mFirstName);
-                            Log.d(TAG, "String mLastName is: " + mLastName);
-                            textName.setText(mFirstName + " " +mLastName);
-                        } else {
-                            Log.d(TAG, "No such document");
-
-                    }
-                } ); */
 
 
 
@@ -154,7 +139,15 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        Log.e("DEBUG", "onResume of HomeFragment");
 
+
+
+
+        super.onResume();
+    }
     // @Override
     protected void onStartView() {
         super.onStart();

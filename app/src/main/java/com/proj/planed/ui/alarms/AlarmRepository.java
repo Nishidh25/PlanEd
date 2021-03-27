@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.proj.planed.Database;
+import com.proj.planed.ui.planner.Planner;
 
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class AlarmRepository {
         });
     }
 
+    public LiveData<List<Alarm>> getAlarmSearch(String name) {
+        alarmsLiveData = alarmDao.getAlarmSearch(name);
+        return alarmsLiveData;
+    }
 
 
 

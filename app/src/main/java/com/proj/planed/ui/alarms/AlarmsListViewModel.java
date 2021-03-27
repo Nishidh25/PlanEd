@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.proj.planed.ui.planner.Planner;
+
 import java.util.List;
 
 public class AlarmsListViewModel extends AndroidViewModel {
@@ -37,4 +39,7 @@ public class AlarmsListViewModel extends AndroidViewModel {
     public LiveData<List<Alarm>> getAlarmsLiveData() {
         return alarmsLiveData;
     }
+
+    public LiveData<List<Alarm>> getAlarmSearch(String name){ return alarmRepository.getAlarmSearch(name);}
+
 }
