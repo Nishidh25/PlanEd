@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.proj.planed.NavigationActivity;
 import com.proj.planed.R;
@@ -61,6 +63,27 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView);
         alarmsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         alarmsRecyclerView.setAdapter(alarmRecyclerViewAdapter);
+
+
+        TextView addAlarmActionText = view.findViewById(R.id.add_alarms_action_text);
+        TextView addPersonActionText  = view.findViewById(R.id.delete_alarms_action_text);;
+
+
+        alarmsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0.9) {
+                    deleteAll.hide();
+                    addPersonActionText.setVisibility(View.INVISIBLE);
+                } else {
+                    if (dy < 0.9)
+                        deleteAll.show();
+                        addPersonActionText.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
 
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
@@ -125,8 +148,6 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         });
 
 
-        TextView addAlarmActionText = view.findViewById(R.id.add_alarms_action_text);
-        TextView addPersonActionText  = view.findViewById(R.id.delete_alarms_action_text);;
 
 
         addAlarm.show();

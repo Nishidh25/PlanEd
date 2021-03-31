@@ -35,6 +35,7 @@ public class NavigationActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "prefs";
     private static final String PREF_DARK_THEME = "dark_theme";
     public SearchView searchView;
+    public BottomNavigationView navBottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class NavigationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        BottomNavigationView navBottomView = findViewById(R.id.bottom_navigation_view);
+        navBottomView = findViewById(R.id.bottom_navigation_view);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         navBottomView.getMaxItemCount();
 

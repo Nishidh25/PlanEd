@@ -7,16 +7,19 @@ import androidx.room.RoomDatabase;
 
 import com.proj.planed.ui.alarms.Alarm;
 import com.proj.planed.ui.alarms.AlarmDao;
+import com.proj.planed.ui.faq.Faq;
+import com.proj.planed.ui.faq.FaqDao;
 import com.proj.planed.ui.planner.Planner;
 import com.proj.planed.ui.planner.PlannerDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {Alarm.class, Planner.class}, version = 1, exportSchema = false)
+@androidx.room.Database(entities = {Alarm.class, Planner.class, Faq.class}, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
     public abstract AlarmDao alarmDao();
     public abstract PlannerDao plannerDao();
+    public abstract FaqDao faqDao();
 
 
     private static volatile Database INSTANCE;

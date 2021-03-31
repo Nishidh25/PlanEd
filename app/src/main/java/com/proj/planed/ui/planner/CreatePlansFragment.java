@@ -65,7 +65,6 @@ public class CreatePlansFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //createAlarmViewModel = ViewModelProviders.of(this).get(CreateAlarmViewModel.class);
         createPlannerViewModel = new ViewModelProvider(this).get(CreatePlannerViewModel.class);
     }
 
@@ -79,15 +78,10 @@ public class CreatePlansFragment extends Fragment {
         time_selected = view.findViewById(R.id.time_text);
         time_selected.setEnabled(false);
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
-                new TimePickerDialog.OnTimeSetListener() {
-
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay,
-                                          int minute) {
-                        timePicker = view;
-                        timePicker.setIs24HourView(true);
-                        time_selected.getEditText().setText(hourOfDay + ":" + minute);
-                    }
+                (view1, hourOfDay, minute) -> {
+                    timePicker = view1;
+                    timePicker.setIs24HourView(true);
+                    time_selected.getEditText().setText(hourOfDay + ":" + minute);
                 }, c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE), false);
 
 
@@ -99,26 +93,20 @@ public class CreatePlansFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        recurring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        recurring.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
-                if (isChecked) {
-                    recurringOptions.setVisibility(View.VISIBLE);
-                } else {
-                    recurringOptions.setVisibility(View.GONE);
-                }
+            if (isChecked) {
+                recurringOptions.setVisibility(View.VISIBLE);
+            } else {
+                recurringOptions.setVisibility(View.GONE);
             }
         });
 
 
-        scheduleAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scheduleAlarm();
-                Navigation.findNavController(v).navigate(R.id.action_createPlannerFragment_to_plannerListFragment);
+        scheduleAlarm.setOnClickListener(v -> {
+            scheduleAlarm();
+            Navigation.findNavController(v).navigate(R.id.action_createPlannerFragment_to_plannerListFragment);
 
-            }
         });
 
 

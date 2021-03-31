@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/question"
+        fontPath="fonts/Font-Medium.ttf"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="?android:attr/textColorPrimary"
-        fontPath="fonts/Font-Medium.ttf"/>
+        android:layout_height="34dp"
+        android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
         android:id="@+id/answer"
