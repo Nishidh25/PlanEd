@@ -46,11 +46,10 @@ public class FaqRecyclerViewAdapter extends RecyclerView.Adapter<FaqViewHolder> 
         return faq.size();
     }
 
-    public void setAlarms(List<Faq> faq) {
+    public void setFaq(List<Faq> faq) {
         this.faq = faq;
         notifyDataSetChanged();
     }
-
 
 }
 

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="Your Pill Reminders"
+            android:text="@string/your_pill_reminders"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="Add Alarm"
+            android:text="@string/add_alarm"
             app:layout_constraintBottom_toBottomOf="@+id/add_alarm_fab"
             app:layout_constraintEnd_toStartOf="@+id/add_alarm_fab"
             app:layout_constraintTop_toTopOf="@+id/add_alarm_fab" />
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="Delete All"
+            android:text="@string/delete_all"
             app:layout_constraintBottom_toBottomOf="@+id/button_delete_all"
             app:layout_constraintEnd_toStartOf="@+id/button_delete_all"
             app:layout_constraintTop_toTopOf="@+id/button_delete_all" />
