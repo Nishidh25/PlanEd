@@ -1,10 +1,14 @@
 package com.proj.planed.ui.alarms;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.proj.planed.R;
@@ -25,6 +29,7 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alarm, parent, false);
+
         return new AlarmViewHolder(itemView, listener);
     }
 
@@ -33,6 +38,10 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
         Alarm alarm = alarms.get(position);
         try {
             holder.bind(alarm);
+            holder.itemView.findViewById(R.id.card_view_alarm).setOnClickListener( v -> {
+                Log.d("TAG", "onClick " + position);
+                Navigation.findNavController(v).navigate(R.id.action_alarmsListFragment_to_createAlarmFragment);
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +62,6 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
         super.onViewRecycled(holder);
         holder.alarmStarted.setOnCheckedChangeListener(null);
     }
-
 
     public Alarm getWordAtPosition (int position) {
         return alarms.get(position);
