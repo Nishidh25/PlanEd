@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import static com.proj.planed.ui.alarms.AlarmBroadcastReceiver.FRIDAY;
@@ -24,7 +25,7 @@ import static com.proj.planed.ui.alarms.AlarmBroadcastReceiver.TUESDAY;
 import static com.proj.planed.ui.alarms.AlarmBroadcastReceiver.WEDNESDAY;
 
 @Entity(tableName = "alarm_table")
-public class Alarm {
+public class Alarm implements Serializable {
     @PrimaryKey
     @NonNull
     private int alarmId;
@@ -187,6 +188,7 @@ public class Alarm {
         Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
         Log.i("cancel", toastText);
     }
+
 
     public String getRecurringDaysText() {
         if (!recurring) {

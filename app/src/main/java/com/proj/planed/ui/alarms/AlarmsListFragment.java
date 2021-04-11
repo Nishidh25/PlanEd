@@ -1,13 +1,21 @@
 package com.proj.planed.ui.alarms;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.proj.planed.NavigationActivity;
 import com.proj.planed.R;
+import com.proj.planed.ui.faq.FaqActivity;
 import com.proj.planed.ui.planner.Planner;
 
 import java.util.List;
@@ -66,10 +75,10 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
 
 
         TextView addAlarmActionText = view.findViewById(R.id.add_alarms_action_text);
-        TextView addPersonActionText  = view.findViewById(R.id.delete_alarms_action_text);;
+        //TextView addPersonActionText  = view.findViewById(R.id.delete_alarms_action_text);;
 
 
-        alarmsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+   /*     alarmsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0.9) {
@@ -81,9 +90,80 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
                         addPersonActionText.setVisibility(View.VISIBLE);
                 }
             }
+        }); */
+
+//Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        //     .setAction("Action", null).show();
+
+
+
+
+
+        FloatingActionButton fab = view.findViewById(R.id.fab_help_alarm);
+        fab.setOnClickListener(view1 -> {
+            CharSequence help[] = new CharSequence[] {"Add a Reminder", "Remove a reminder", "Edit a reminder", "Search a reminder"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("How to Use: ");
+
+
+            builder.setItems(help, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int selected) {
+                    // the user clicked on colors[which]
+                    if (selected == 0){
+                        AlertDialog alertDialog1 = new AlertDialog.Builder(getContext()).create();
+                        final View view2 = getLayoutInflater().inflate( R.layout.help_dialog, null);
+                        VideoView vv = new VideoView(getContext());
+                        RelativeLayout layout = view2.findViewById(R.id.helper_dialog_rl);
+
+                        vv.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        layout.addView(vv);
+                        alertDialog1.setTitle(help[selected]);
+                        int rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
+                        MediaController mediaController = new MediaController(getContext());
+                        mediaController.setAnchorView(vv);
+                        // URI formation
+                        String path = "android.resource://" + getActivity().getPackageName() + "/" + rawId;
+                        vv.setMediaController(mediaController);
+                        // Set the URI to play video file
+                        vv.setVideoURI(Uri.parse(path));
+                        vv.start();
+                        alertDialog1.setView(view2);
+
+                        alertDialog1.show();
+
+
+                        // create and show
+                        // the alert dialog
+
+
+
+                    }else if(selected == 1){
+
+                    }else if(selected == 2){
+
+                    }else if(selected == 3){
+
+                    }
+
+                }
+            });
+
+            // add a button
+            builder.setPositiveButton("OK", (dialog1, which) -> {
+                // Close
+            });
+
+            // To faq page
+            builder.setNeutralButton("More Help", (dialog1, which) -> {
+                Intent intent = new Intent(getContext(), FaqActivity.class);
+                startActivity(intent);
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
-
-
 
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
@@ -126,6 +206,7 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
 
 
         searchView = ((NavigationActivity)getActivity()).searchView;
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -140,20 +221,20 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
             }
         });
 
-        deleteAll.setOnClickListener(new View.OnClickListener() {
+     /*   deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alarmsListViewModel.deleteAll();
             }
-        });
+        }); */
 
 
 
 
         addAlarm.show();
-        deleteAll.show();
+//        deleteAll.show();
         addAlarmActionText.setVisibility(View.VISIBLE);
-        addPersonActionText.setVisibility(View.VISIBLE);
+        //addPersonActionText.setVisibility(View.VISIBLE);
 
 
 
@@ -181,6 +262,8 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     @Override
     public void onResume() {
         Log.e("DEBUG", "onResume of AlarmsFragment");
+
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -1,5 +1,7 @@
 package com.proj.planed.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,16 +18,11 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,15 +35,17 @@ import com.proj.planed.R;
 import com.proj.planed.ui.faq.FaqActivity;
 
 public class HomeFragment extends Fragment {
-
+    SearchView searchView1;
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
+
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        FloatingActionButton fab =  root.findViewById(R.id.floatingActionButton);
+
 
         TextView textName = root.findViewById(R.id.textViewName);
 
@@ -87,17 +86,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-
-
-
-
-       fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         CardView card_pill_reminder = root.findViewById(R.id.card_pill_reminder);
         CardView card_planner = root.findViewById(R.id.card_planner);
         CardView card_faq = root.findViewById(R.id.card_faq);
@@ -143,11 +131,17 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         Log.e("DEBUG", "onResume of HomeFragment");
 
-
-
-
         super.onResume();
+
+
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
     // @Override
     protected void onStartView() {
         super.onStart();

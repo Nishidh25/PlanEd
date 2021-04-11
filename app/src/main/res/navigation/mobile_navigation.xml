@@ -23,6 +23,24 @@
             app:destination="@id/createAlarmFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_alarmsListFragment_to_editAlarmFragment"
+            app:destination="@id/editAlarmFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/fragment_close_exit">
+            <argument
+                android:name="name"
+                app:argType="string"
+                android:defaultValue="nanme" />
+
+            <argument
+                android:name="email"
+                app:argType="string"
+                android:defaultValue="weq" />
+
+
+        </action>
     </fragment>
 
 
@@ -51,7 +69,7 @@
     <fragment
         android:id="@+id/createAlarmFragment"
         android:name="com.proj.planed.ui.alarms.CreateAlarmFragment"
-        android:label="CreateAlarmFragment" >
+        android:label="Adding Reminder" >
         <action
             android:id="@+id/action_createAlarmFragment_to_alarmsListFragment"
             app:destination="@id/navigation_alarm"
@@ -59,12 +77,24 @@
             app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
 
+    <fragment
+        android:id="@+id/editAlarmFragment"
+        android:name="com.proj.planed.ui.alarms.EditAlarmFragment"
+        android:label="Editing Reminder" >
+        <action
+            android:id="@+id/action_editAlarmFragment_to_alarmsListFragment"
+            app:destination="@id/navigation_alarm"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+
 
     <fragment
         android:id="@+id/createPlannerFragment"
         android:name="com.proj.planed.ui.planner.CreatePlansFragment"
         tools:layout="@layout/fragment_createplan"
-        android:label="CreatePlannerFragment" >
+        android:label="Adding Plan" >
         <action
             android:id="@+id/action_createPlannerFragment_to_plannerListFragment"
             app:destination="@id/navigation_notifications"

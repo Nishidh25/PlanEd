@@ -121,6 +121,8 @@ public class NavigationActivity extends AppCompatActivity {
             item.setTitle(s);
 
         }
+
+
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView =

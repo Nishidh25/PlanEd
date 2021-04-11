@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.proj.planed.NavigationActivity;
 import com.proj.planed.R;
 import com.proj.planed.ui.settings.SettingsActivity;
 import com.proj.planed.ui.settings.SettingsFragment;
@@ -25,7 +26,6 @@ public class FaqActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "prefs";
     private static final String PREF_DARK_THEME = "dark_theme";
-    public SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +50,17 @@ public class FaqActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.faq_menu, menu);
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
 
         if(useDarkTheme){
-            int positionOfMenuItem = 1;
+            int positionOfMenuItem = 0;
             MenuItem item = menu.getItem(positionOfMenuItem);
             SpannableString s = new SpannableString("Settings");
             s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
             item.setTitle(s);
-
         }
-
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
 
 
 

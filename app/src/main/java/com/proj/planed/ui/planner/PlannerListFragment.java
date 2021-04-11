@@ -1,13 +1,18 @@
 package com.proj.planed.ui.planner;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.proj.planed.R;
+import com.proj.planed.ui.faq.FaqActivity;
 
 import java.util.List;
 
@@ -97,6 +103,47 @@ public class PlannerListFragment extends Fragment implements OnTogglePlannerList
         set_on_click(fri,"friday");
         set_on_click(sat,"saturday");
         set_on_click(sun,"sunday");
+
+
+        FloatingActionButton fab = view.findViewById(R.id.fab_help_plans);
+        fab.setOnClickListener(view1 -> {
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("How to use: ");
+
+            // set the custom layout
+            final View view2 = getLayoutInflater().inflate( R.layout.help_dialog, null);
+            VideoView vv = new VideoView(getContext());
+
+            int rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
+            MediaController mediaController = new MediaController(getContext());
+            mediaController.setAnchorView(vv);
+            // URI formation
+            String path = "android.resource://" + getActivity().getPackageName() + "/" + rawId;
+            vv.setMediaController(mediaController);
+            // Set the URI to play video file
+            vv.setVideoURI(Uri.parse(path));
+            vv.start();
+            builder.setView(view2);
+
+            // add a button
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                // Close
+            });
+
+            // To faq page
+            builder.setNeutralButton("More Help", (dialog, which) -> {
+                Intent intent = new Intent(getContext(), FaqActivity.class);
+                startActivity(intent);
+            });
+
+            // create and show
+            // the alert dialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
+
 
 
         ItemTouchHelper helper = new ItemTouchHelper(
