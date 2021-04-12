@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="ui.profile.ProfileFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="188dp"
-        android:background="#fece2f"
+        android:layout_height="150dp"
+        android:background="#2580e2"
         android:padding="20dp">
 
         <ImageView
@@ -18,7 +18,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/fullname_field"
@@ -48,18 +49,19 @@
 
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="Full Name"
             android:id="@+id/full_name_profile"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:hint="Full Name"
+            android:paddingTop="10dp"
+            android:enabled="false"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
 
@@ -70,29 +72,29 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="Age"
-            android:id="@+id/age"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawablePadding="10dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:hint="Gender"
             android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Gender"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:enabled="false"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawablePadding="10dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/age"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:hint="Age"
+            android:enabled="false"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -102,29 +104,94 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Height"
+            android:enabled="false"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawablePadding="10dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/weight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Weight"
+            android:enabled="false"
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawablePadding="10dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>
 
 
+
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/update"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:foregroundGravity="bottom"
-        android:text="UPDATE" />
+        android:text="Edit" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="55dp"
-        android:layout_height="58dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:layout_marginTop="30dp"
-        android:foregroundGravity="bottom"
-        android:src="@drawable/abc_vector_test"
-        app:backgroundTint="#FFFFFF" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BMI"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="55dp"
+            android:layout_height="58dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:foregroundGravity="bottom"
+            android:gravity="left"
+            android:src="@drawable/bmi"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="55dp"
+            android:layout_height="58dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="30dp"
+
+            android:src="@drawable/abc_vector_test" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"/>
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

@@ -52,38 +52,11 @@
             android:id="@+id/add_plans_action_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
             android:text="@string/add_activity"
             app:layout_constraintEnd_toStartOf="@+id/add_plans_fab"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/delete_plans_action_text"
             app:layout_constraintTop_toTopOf="@+id/add_plans_fab" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/button_delete_all_plans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toTopOf="@+id/add_plans_action_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/add_alarm_fab"
-            app:srcCompat="@android:drawable/ic_delete" />
-
-        <TextView
-            android:id="@+id/delete_plans_action_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="40dp"
-            android:text="@string/delete_all"
-            app:layout_constraintBottom_toTopOf="@+id/add_plans_action_text"
-            app:layout_constraintEnd_toStartOf="@+id/button_delete_all_plans"
-            app:layout_constraintTop_toTopOf="@+id/button_delete_all" />
-
 
         <LinearLayout
             android:id="@+id/fragment_viewplan_options"

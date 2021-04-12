@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -46,6 +49,7 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     private FloatingActionButton addAlarm;
     FloatingActionButton deleteAll;
     SearchView searchView;
+    Alarm mRecentlyDeleted;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,49 +108,48 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
             CharSequence help[] = new CharSequence[] {"Add a Reminder", "Remove a reminder", "Edit a reminder", "Search a reminder"};
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("How to Use: ");
+            builder.setTitle("How to :");
 
 
             builder.setItems(help, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int selected) {
-                    // the user clicked on colors[which]
+
+                    AlertDialog.Builder alertDialog1 = new AlertDialog.Builder(getContext());
+                    final View view2 = getLayoutInflater().inflate( R.layout.help_dialog, null);
+                    VideoView vv = new VideoView(getContext());
+                    RelativeLayout layout = view2.findViewById(R.id.helper_dialog_rl);
+
+                    vv.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.addView(vv);
+                    alertDialog1.setTitle(help[selected]);
+                    int rawId = 0;
+
                     if (selected == 0){
-                        AlertDialog alertDialog1 = new AlertDialog.Builder(getContext()).create();
-                        final View view2 = getLayoutInflater().inflate( R.layout.help_dialog, null);
-                        VideoView vv = new VideoView(getContext());
-                        RelativeLayout layout = view2.findViewById(R.id.helper_dialog_rl);
-
-                        vv.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        layout.addView(vv);
-                        alertDialog1.setTitle(help[selected]);
-                        int rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
-                        MediaController mediaController = new MediaController(getContext());
-                        mediaController.setAnchorView(vv);
-                        // URI formation
-                        String path = "android.resource://" + getActivity().getPackageName() + "/" + rawId;
-                        vv.setMediaController(mediaController);
-                        // Set the URI to play video file
-                        vv.setVideoURI(Uri.parse(path));
-                        vv.start();
-                        alertDialog1.setView(view2);
-
-                        alertDialog1.show();
-
-
-                        // create and show
-                        // the alert dialog
-
-
-
+                        rawId = getResources().getIdentifier("add_alarm",  "raw", getActivity().getPackageName());
                     }else if(selected == 1){
-
+                        rawId = getResources().getIdentifier("remove_alarm",  "raw", getActivity().getPackageName());
                     }else if(selected == 2){
-
+                        rawId = getResources().getIdentifier("edit_alarm",  "raw", getActivity().getPackageName());
                     }else if(selected == 3){
-
+                        rawId = getResources().getIdentifier("search_alarm",  "raw", getActivity().getPackageName());
                     }
 
+
+                    MediaController mediaController = new MediaController(getContext());
+                    mediaController.setAnchorView(vv);
+                    // URI formation
+                    String path = "android.resource://" + getActivity().getPackageName() + "/" + rawId;
+                    vv.setMediaController(mediaController);
+                    // Set the URI to play video file
+                    vv.setVideoURI(Uri.parse(path));
+                    vv.start();
+                    alertDialog1.setView(view2);
+                    alertDialog1.setPositiveButton("Got It!", (dialog1, which) -> {
+                        // Close
+                    });
+                    AlertDialog dialog1 = alertDialog1.create();
+                    dialog1.show();
                 }
             });
 
@@ -181,18 +184,28 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
                         int position = viewHolder.getAdapterPosition();
                         Alarm alarm = alarmRecyclerViewAdapter.getWordAtPosition(position);
                         alarm.cancelAlarm(getContext());
-                        Toast.makeText(getContext(), "Deleted " +
-                                        alarm.getTitle(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(), "Deleted " +
+                         //               alarm.getTitle(), Toast.LENGTH_LONG).show();
 
+                        Snackbar snackbar = Snackbar.make(view, "Reminder Deleted", Snackbar.LENGTH_LONG);
+                        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) snackbar.getView().getLayoutParams();
+                        params.setMargins(0, 0, 0, 75);
+                        snackbar.getView().setLayoutParams(params);
+
+                        snackbar.setAction("Undo", v -> undoDelete());
+                        snackbar.show();
                         // Delete the word
+                        mRecentlyDeleted = alarm;
                         alarmsListViewModel.delete(alarm);
                     }
                 });
 
+
+
         helper.attachToRecyclerView(alarmsRecyclerView);
 
         addAlarm = view.findViewById(R.id.add_alarm_fab);
-        deleteAll = view.findViewById(R.id.button_delete_all);
+        //deleteAll = view.findViewById(R.id.button_delete_all);
 
 
         addAlarm.setOnClickListener(new View.OnClickListener() {
@@ -214,8 +227,8 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(getActivity().getApplicationContext(), newText,Toast.LENGTH_SHORT).show();
-                //searchAlarm(newText);
+               // Toast.makeText(getActivity().getApplicationContext(), newText,Toast.LENGTH_SHORT).show();
+                searchAlarm(newText);
                 //AlarmRecyclerViewAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -236,15 +249,8 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         addAlarmActionText.setVisibility(View.VISIBLE);
         //addPersonActionText.setVisibility(View.VISIBLE);
 
-
-
-
-
-
-
         return view;
     }
-
 
 
 
@@ -272,7 +278,9 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(getActivity().getApplicationContext(), newText,Toast.LENGTH_SHORT).show();
+
+
+                //Toast.makeText(getActivity().getApplicationContext(), newText,Toast.LENGTH_SHORT).show();
                 searchAlarm(newText);
                 //AlarmRecyclerViewAdapter.getFilter().filter(newText);
                 return false;
@@ -317,5 +325,12 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
 
     }
 
+    private void undoDelete() {
+        CreateAlarmViewModel createAlarmViewModel = new CreateAlarmViewModel(getActivity().getApplication());
+        createAlarmViewModel.insert(mRecentlyDeleted);
+        mRecentlyDeleted.schedule(getContext());
+        alarmsListViewModel.update(mRecentlyDeleted);
+        alarmRecyclerViewAdapter.notifyDataSetChanged();
+    }
 
 }

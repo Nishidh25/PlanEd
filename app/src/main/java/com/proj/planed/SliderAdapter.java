@@ -21,7 +21,7 @@ public class SliderAdapter extends PagerAdapter {
         this.context=context;
     }
     public int[] slide_images={
-            R.drawable.icon_list,
+            R.drawable.planed_logo,
             R.drawable.theme_decider,
             R.drawable.register
     };

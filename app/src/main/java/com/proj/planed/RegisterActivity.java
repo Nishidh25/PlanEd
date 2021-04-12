@@ -2,6 +2,8 @@ package com.proj.planed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity{
 
     String[] gender_list = { "Male", "Female"};
     String gender = "";
-    EditText first_name, last_name, phone_number, age;
+    EditText first_name, last_name, phone_number, age,height_et,weight_et;
     FirebaseAuth mAuth;
 
 
@@ -35,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity{
         last_name = findViewById(R.id.last_name);
         phone_number = findViewById(R.id.phone);
         age = findViewById(R.id.age);
+        height_et = findViewById(R.id.height);
+        weight_et = findViewById(R.id.weight);
 
 
 
@@ -88,21 +92,54 @@ public class RegisterActivity extends AppCompatActivity{
 
         register.setOnClickListener(v -> {
 
+            if (CheckAllFields()) {
+                Map<String, Object> users = new HashMap<>();
+                users.put("First name", first_name.getText().toString());
+                users.put("Last name", last_name.getText().toString());
+                users.put("Email", user.getEmail());
+                users.put("Phone number", phone_number.getText().toString());
+                users.put("Gender", gender);
+                users.put("Age", Integer.parseInt(age.getText().toString()));
+                users.put("Height", height_et.getText().toString());
+                users.put("Weight", weight_et.getText().toString());
 
-            Map<String, Object> users = new HashMap<>();
-            users.put("First name", first_name.getText().toString());
-            users.put("Last name", last_name.getText().toString());
-            users.put("Email", user.getEmail());
-            users.put("Phone number", phone_number.getText().toString());
-            users.put("Gender", gender);
-            users.put("Age", Integer.parseInt(age.getText().toString()));
-
-            db.collection("users").document(uid).set(users);
-            Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-            startActivity(intent);
-            RegisterActivity.this.finish();
+                db.collection("users").document(uid).set(users);
+                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                startActivity(intent);
+                RegisterActivity.this.finish();
+            }
         });
 
+    }
+
+    private boolean CheckAllFields() {
+        if (first_name.length() == 0) {
+            first_name.setError("This field is required");
+            return false;
+        }
+
+        if (last_name.length() == 0) {
+            last_name.setError("This field is required");
+            return false;
+        }
+
+
+
+        if (phone_number.length() == 0) {
+            phone_number.setError("Phone Number is required");
+            return false;
+        }else if (phone_number.length() != 10) {
+            phone_number.setError("Phone Number must be minimum 10 characters");
+            return false;
+        }
+
+        if (age.length() == 0) {
+            age.setError("Age is required");
+            return false;
+        }
+
+       // after all validation return true.
+        return true;
     }
 
 

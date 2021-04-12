@@ -150,11 +150,11 @@ public class Alarm implements Serializable {
         if (!recurring) {
             String toastText = null;
             try {
-                toastText = String.format("One Time Alarm %s scheduled for %s at %02d:%02d", title, DayUtil.toDay(calendar.get(Calendar.DAY_OF_WEEK)), hour, minute, alarmId);
+                //toastText = String.format("One Time Alarm %s scheduled for %s at %02d:%02d", title, DayUtil.toDay(calendar.get(Calendar.DAY_OF_WEEK)), hour, minute, alarmId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
 
             alarmManager.setExact(
                     AlarmManager.RTC_WAKEUP,
@@ -162,8 +162,8 @@ public class Alarm implements Serializable {
                     alarmPendingIntent
             );
         } else {
-            String toastText = String.format("Recurring Alarm %s scheduled for %s at %02d:%02d", title, getRecurringDaysText(), hour, minute, alarmId);
-            Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
+            //String toastText = String.format("Recurring Alarm %s scheduled for %s at %02d:%02d", title, getRecurringDaysText(), hour, minute, alarmId);
+            //Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
 
             final long RUN_DAILY = 24 * 60 * 60 * 1000;
             alarmManager.setRepeating(
@@ -184,9 +184,9 @@ public class Alarm implements Serializable {
         alarmManager.cancel(alarmPendingIntent);
         this.started = false;
 
-        String toastText = String.format("Alarm cancelled for %02d:%02d with id %d", hour, minute, alarmId);
-        Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
-        Log.i("cancel", toastText);
+        //String toastText = String.format("Alarm cancelled for %02d:%02d with id %d", hour, minute, alarmId);
+        //Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
+        //Log.i("cancel", toastText);
     }
 
 

@@ -98,6 +98,7 @@ public class FirebaseActivity extends AppCompatActivity {
     private void registerNewUser(String type) {
         TextInputLayout emailTV = findViewById(R.id.Email);
         TextInputLayout passwordTV = findViewById(R.id.Password);
+        TextInputLayout passwordTV2 = findViewById(R.id.ConfirmPassword);
 
 
         String email, password;
@@ -106,7 +107,7 @@ public class FirebaseActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email)) {
             emailTV.getEditText().setError("Please enter email...");
-
+            return;
           //  Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
 
         }
@@ -115,6 +116,7 @@ public class FirebaseActivity extends AppCompatActivity {
           //  Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
             return;
         }
+
 
 
         if (type.equals("Register")){

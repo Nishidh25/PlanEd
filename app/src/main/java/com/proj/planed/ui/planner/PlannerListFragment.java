@@ -1,6 +1,7 @@
 package com.proj.planed.ui.planner;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -107,39 +110,65 @@ public class PlannerListFragment extends Fragment implements OnTogglePlannerList
 
         FloatingActionButton fab = view.findViewById(R.id.fab_help_plans);
         fab.setOnClickListener(view1 -> {
-
+            CharSequence help[] = new CharSequence[] {"Add a Activity", "Remove a Activity", "Edit an Activity", "Search an Activity"};
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("How to use: ");
+            builder.setTitle("How to:");
 
-            // set the custom layout
-            final View view2 = getLayoutInflater().inflate( R.layout.help_dialog, null);
-            VideoView vv = new VideoView(getContext());
 
-            int rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
-            MediaController mediaController = new MediaController(getContext());
-            mediaController.setAnchorView(vv);
-            // URI formation
-            String path = "android.resource://" + getActivity().getPackageName() + "/" + rawId;
-            vv.setMediaController(mediaController);
-            // Set the URI to play video file
-            vv.setVideoURI(Uri.parse(path));
-            vv.start();
-            builder.setView(view2);
+            builder.setItems(help, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int selected) {
+
+                    AlertDialog.Builder alertDialog1 = new AlertDialog.Builder(getContext());
+                    final View view2 = getLayoutInflater().inflate( R.layout.help_dialog, null);
+                    VideoView vv = new VideoView(getContext());
+                    RelativeLayout layout = view2.findViewById(R.id.helper_dialog_rl);
+
+                    vv.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.addView(vv);
+                    alertDialog1.setTitle(help[selected]);
+                    int rawId = 0;
+
+                    if (selected == 0){
+                        rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
+                    }else if(selected == 1){
+                        rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
+                    }else if(selected == 2){
+                        rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
+                    }else if(selected == 3){
+                        rawId = getResources().getIdentifier("test",  "raw", getActivity().getPackageName());
+                    }
+
+
+                    MediaController mediaController = new MediaController(getContext());
+                    mediaController.setAnchorView(vv);
+                    // URI formation
+                    String path = "android.resource://" + getActivity().getPackageName() + "/" + rawId;
+                    vv.setMediaController(mediaController);
+                    // Set the URI to play video file
+                    vv.setVideoURI(Uri.parse(path));
+                    vv.start();
+                    alertDialog1.setView(view2);
+                    alertDialog1.setPositiveButton("Got It!", (dialog1, which) -> {
+                        // Close
+                    });
+                    AlertDialog dialog1 = alertDialog1.create();
+                    dialog1.show();
+                }
+            });
 
             // add a button
-            builder.setPositiveButton("OK", (dialog, which) -> {
+            builder.setPositiveButton("OK", (dialog1, which) -> {
                 // Close
             });
 
             // To faq page
-            builder.setNeutralButton("More Help", (dialog, which) -> {
+            builder.setNeutralButton("More Help", (dialog1, which) -> {
                 Intent intent = new Intent(getContext(), FaqActivity.class);
                 startActivity(intent);
             });
 
-            // create and show
-            // the alert dialog
             AlertDialog dialog = builder.create();
             dialog.show();
         });
@@ -173,7 +202,7 @@ public class PlannerListFragment extends Fragment implements OnTogglePlannerList
         helper.attachToRecyclerView(plannerRecyclerView);
 
         addPlanner = view.findViewById(R.id.add_plans_fab);
-        deleteAll = view.findViewById(R.id.button_delete_all_plans);
+        //deleteAll = view.findViewById(R.id.button_delete_all_plans);
 
 
         addPlanner.setOnClickListener(new View.OnClickListener() {
@@ -185,22 +214,22 @@ public class PlannerListFragment extends Fragment implements OnTogglePlannerList
 
 
 
-        deleteAll.setOnClickListener(new View.OnClickListener() {
+     /*   deleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 plannerListViewModel.deleteAll();
             }
-        });
+        }); */
 
 
         TextView addAlarmActionText = view.findViewById(R.id.add_plans_action_text);
-        TextView addPersonActionText  = view.findViewById(R.id.delete_plans_action_text);;
+       // TextView addPersonActionText  = view.findViewById(R.id.delete_plans_action_text);;
 
 
         addPlanner.show();
-        deleteAll.show();
+      //  deleteAll.show();
         addAlarmActionText.setVisibility(View.VISIBLE);
-        addPersonActionText.setVisibility(View.VISIBLE);
+       // addPersonActionText.setVisibility(View.VISIBLE);
 
 
 

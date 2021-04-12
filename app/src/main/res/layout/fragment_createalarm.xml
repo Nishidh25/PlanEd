@@ -22,23 +22,24 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/time_text"
-        android:layout_width="166dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="2"
         android:ems="2"
         android:hint="Time"
         android:inputType="none"
+        android:paddingLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:drawablePadding="0dp"
-            android:gravity="center|left"
+            android:gravity="bottom|center"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             tools:layout_editor_absoluteX="33dp"
@@ -52,20 +53,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:layout_weight="3"
         android:text="Select Time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/time_text"
         app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_createalarm_title"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:hint="Enter Pill name"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,93 +79,100 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawablePadding="10dp" />
+            android:layout_height="wrap_content"
+            android:drawablePadding="0dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pill_description"
         android:layout_width="0dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
-        android:hint="What is this medicine for ...?"
+        android:hint="What is this medicine for?"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_time">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:drawablePadding="0dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <Spinner
         android:id="@+id/spinner_pill_type"
         android:layout_width="122dp"
         android:layout_height="46dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintHorizontal_bias="0.988"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pill_description" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pill_instruction"
-        android:layout_width="match_parent"
+        android:layout_width="387dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="200dp"
         android:hint="Instruction"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pill_frequency">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawablePadding="10dp" />
+            android:layout_width="365dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pill_frequency"
-        android:layout_width="180dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="304dp"
-        android:hint="Days"
+        android:layout_width="167dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="320dp"
+        android:hint="No. of times"
         android:inputType="number"
+        android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_pill_type"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
         android:id="@+id/fragment_createalarm_recurring"
-        android:layout_width="395dp"
-        android:layout_height="40dp"
+        android:layout_width="382dp"
+        android:layout_height="48dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:checked="false"
         android:text="Recurring Alarm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pill_instruction" />
 
@@ -240,32 +252,42 @@
         android:id="@+id/textView2"
         android:layout_width="230dp"
         android:layout_height="46dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="10dp"
         android:text="How many times in a days do you need to take this medicine"
         app:layout_constraintBottom_toTopOf="@+id/pill_frequency"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pill_description"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="100dp"
         android:layout_height="39dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="12dp"
         android:text="Medicine Type"
         app:layout_constraintBottom_toTopOf="@+id/spinner_pill_type"
-        app:layout_constraintStart_toEndOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/pill_description"
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="340dp"
         android:layout_height="38dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="10dp"
         android:text="Any special instructions for taking this medicine?"
         app:layout_constraintBottom_toTopOf="@+id/pill_instruction"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pill_frequency"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
