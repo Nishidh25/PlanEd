@@ -8,7 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
+// Data access object
 @Dao
 public interface AlarmDao {
     @Insert
